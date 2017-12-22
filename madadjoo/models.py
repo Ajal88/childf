@@ -3,6 +3,7 @@ from karbar.models import Karbar
 from madadkar.models import Madadkar
 from karbar.models import Request
 from modir.models import Modir
+from karbar.models import ChangeProfileRequest
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ typeOfNeedType = {
 class Madadjoo(Karbar):
     madadkar = models.ForeignKey(Madadkar)
     city = models.CharField(max_length=20)
-    bankAcount = models.CharField(max_length=20)
+    bankAccount = models.CharField(max_length=20)
     grade = models.PositiveIntegerField()
     address = models.CharField(max_length=100)
     state = models.IntegerField(choices=stateType)
@@ -68,3 +69,18 @@ class Success(models.Model):
     madadjoo = models.ForeignKey(Madadjoo)
     subject = models.CharField(max_length=20)
     description = models.TextField(max_length=200)
+
+
+class MadadjooChangeProfileRequest(ChangeProfileRequest):
+    city = models.CharField(max_length=20)
+    bankAccount = models.CharField(max_length=20)
+    grade = models.PositiveIntegerField()
+    address = models.CharField(max_length=100)
+    state = models.IntegerField(choices=stateType)
+    healthStatus = models.IntegerField(choices=healthStatusType)
+    disease = models.CharField(max_length=30)
+    educationalStatus = models.CharField(max_length=30)
+    briefDescription = models.TextField()
+    birthDate = models.DateField()
+    savingAmount = models.PositiveIntegerField()
+    averageGradeOfLastGrade = models.PositiveIntegerField()

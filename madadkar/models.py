@@ -4,6 +4,7 @@ from modir.models import Modir
 from madadjoo.models import Madadjoo
 from karbar.models import Request
 from madadjoo.models import Payment
+from karbar.models import ChangeProfileRequest
 
 # Create your models here.
 
@@ -71,3 +72,12 @@ class RateThePayment(models.Model):
 class Support(models.Model):
     madadkar = models.ForeignKey(Madadkar)
     payment = models.ForeignKey(Payment)
+
+
+class MadadkarChangeProfileRequest(ChangeProfileRequest):
+    birthDate = models.DateField()
+    city = models.CharField(max_length=20)
+    education = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+    salary = models.PositiveIntegerField()
+    dateOfEmployeement = models.DateField()

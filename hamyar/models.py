@@ -5,6 +5,7 @@ from madadjoo.models import Madadjoo
 from karbar.models import Request
 from modir.models import Modir
 from madadkar.models import Madadkar
+from karbar.models import ChangeProfileRequest
 
 
 # Create your models here.
@@ -28,3 +29,7 @@ class SendNonCashAidRequest(Request):
     hamyar = models.ForeignKey(Hamyar)
     madadkar = models.ForeignKey(Madadkar)
     madadjoo = models.ForeignKey(Madadjoo)
+
+
+class HamyarChangeProfileRequest(ChangeProfileRequest):
+    pass

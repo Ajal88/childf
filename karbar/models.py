@@ -40,6 +40,17 @@ class Request(Notification):
     pass
 
 
+class ChangeProfileRequest(Request):
+    firstName = models.CharField(max_length=20)
+    lastName = models.CharField(max_length=20)
+    email = models.EmailField()
+    password = models.CharField(max_length=30)
+    fatherName = models.CharField(max_length=20)
+    sex = models.IntegerField(choices=sexType)
+    NationalCode = models.CharField(max_length=11)
+    phoneNumber = models.CharField(max_length=12)
+
+
 class Message(Notification):
     sender = models.ForeignKey(Karbar, related_name='sender')
     receiver = models.ForeignKey(Karbar, related_name='receiver')
