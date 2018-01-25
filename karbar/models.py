@@ -16,7 +16,7 @@ receiveMessageStatusType = {
 
 
 class Karbar(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     fatherName = models.CharField(max_length=20)
     sex = models.IntegerField(choices=sexType)
     NationalCode = models.CharField(max_length=11)
@@ -41,6 +41,7 @@ class Request(Notification):
 
 
 class ChangeProfileRequest(Request):
+    karbar = models.ForeignKey(Karbar, on_delete=models.CASCADE)
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20)
     email = models.EmailField()

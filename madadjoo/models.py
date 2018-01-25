@@ -26,7 +26,7 @@ typeOfNeedType = {
 
 
 class Madadjoo(Karbar):
-    madadkar = models.ForeignKey(Madadkar)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
     city = models.CharField(max_length=20)
     bankAccount = models.CharField(max_length=20)
     grade = models.PositiveIntegerField()
@@ -42,7 +42,7 @@ class Madadjoo(Karbar):
 
 
 class Need(models.Model):
-    madadjoo = models.ForeignKey(Madadjoo)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     cost = models.PositiveIntegerField()
     type = models.IntegerField(choices=typeOfNeedType)
@@ -50,28 +50,29 @@ class Need(models.Model):
 
 
 class Payment(models.Model):
-    need = models.ForeignKey(Need)
+    need = models.ForeignKey(Need, on_delete=models.CASCADE)
     amount = models.IntegerField()
     date = models.DateField()
 
 
 class MadadkarChangeRequest(Request):
-    madadjoo = models.ForeignKey(Madadjoo)
-    modir = models.ForeignKey(Modir)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
+    modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
 
 
 class ThanksLetterSendRequest(Request):
-    madadjoo = models.ForeignKey(Madadjoo)
-    madadkar = models.ForeignKey(Madadkar)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
 
 
 class Success(models.Model):
-    madadjoo = models.ForeignKey(Madadjoo)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     subject = models.CharField(max_length=20)
     description = models.TextField(max_length=200)
 
 
 class MadadjooChangeProfileRequest(ChangeProfileRequest):
+    madadjoo = models.ForeignKey(Karbar, on_delete=models.CASCADE)
     city = models.CharField(max_length=20)
     bankAccount = models.CharField(max_length=20)
     grade = models.PositiveIntegerField()
