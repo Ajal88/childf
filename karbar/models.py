@@ -14,6 +14,13 @@ receiveMessageStatusType = {
     (1, 'دریافت نشد')
 }
 
+us_type = {
+    (0, 'madadkar'),
+    (1, 'madadjoo'),
+    (2, 'hamyar'),
+    (3, 'modir')
+}
+
 
 class Karbar(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -21,6 +28,7 @@ class Karbar(models.Model):
     sex = models.IntegerField(choices=sexType)
     NationalCode = models.CharField(max_length=11)
     phoneNumber = models.CharField(max_length=12)
+    user_type = models.IntegerField(choices=us_type)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -53,5 +61,5 @@ class ChangeProfileRequest(Request):
 
 
 class Message(Notification):
-    sender = models.ForeignKey(Karbar, related_name='sender')
-    receiver = models.ForeignKey(Karbar, related_name='receiver')
+    sender = models.ForeignKey(Karbar, related_name='sender', on_delete=models.DO_NOTHING)
+    receiver = models.ForeignKey(Karbar, related_name='receiver', on_delete=models.CASCADE)
