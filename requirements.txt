@@ -1,4 +1,5 @@
-Django==1.11.3
+Django==2.0.1
 pytz==2017.2
 virtualenv==15.1.0
 virtualenvwrapper-win==1.2.1
+psycopg2==2.7.3.2
