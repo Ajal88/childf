@@ -35,8 +35,8 @@ class Madadkar(Karbar):
 
 
 class MadadjooRegistrationRequest(Request):
-    madadkar = models.ForeignKey(Madadkar)
-    modir = models.ForeignKey(Modir)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
+    modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20)
     fatherName = models.CharField(max_length=20)
@@ -56,22 +56,22 @@ class MadadjooRegistrationRequest(Request):
 
 
 class RateTheMadadjoo(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    madadjoo = models.ForeignKey(Madadjoo)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     date = models.DateField()
     reason = models.CharField(max_length=50)
     score = models.IntegerField()
 
 
 class RateThePayment(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    payment = models.ForeignKey(Payment)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     score = models.IntegerField()
 
 
 class Support(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    payment = models.ForeignKey(Payment)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
 
 class MadadkarChangeProfileRequest(ChangeProfileRequest):
