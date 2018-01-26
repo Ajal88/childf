@@ -1,16 +1,21 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel='stylesheet' id='bootstrap-rtl-css' href='css/bootstrap.rtl.min.css?ver=3.3.7.3' type='text/css'/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/info.css"/>
-    <link rel="icon" href="img/logo.png">
+    <!-- Original Bootstrap 3.3.7 -->
+    <link rel='stylesheet' id='bootstrap-css' href='{% static 'css/bootstrap.min.css' %}'>
+    <!-- Bootstrap RTL 3.3.7.3 -->
+    <link rel='stylesheet' id='bootstrap-rtl-css' href='{% static 'css/bootstrap.rtl.min.css' %}'
+          type='text/css'/>
+    <!-- custom and normalize -->
+    <link rel="stylesheet" href='{% static 'css/normalize.css' %}'/>
+    <link rel="stylesheet" href='{% static 'css/info.css' %}'/>
+    <link rel="icon" href='{% static 'img/logo.png' %}'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/info.js"></script>
+    <script src='{% static 'js/bootstrap.js' %}'></script>
+    <script src='{% static 'js/info.js' %}'></script>
     <title>آشنایی با بنیاد کودک</title>
 </head>
 
@@ -30,7 +35,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#"><b>بنیاد کودک</b></a>
-                    <img alt="Brand" class="brand-logo" src="img/logo.png">
+                    <img alt="Brand" class="brand-logo" src='{% static 'img/logo.png' %}'>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,7 +66,8 @@
                             </button>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-warning navbar-btn btn-space" id="sgup"><b>ثبت‌نام</b></button>
+                            <button type="button" class="btn btn-warning navbar-btn btn-space" id="sgup"><b>ثبت‌نام</b>
+                            </button>
                         </li>
                         <li>
                             <button type="button" class="btn navbar-btn btn-space" id="help"><b>ورود</b></button>
@@ -137,7 +143,7 @@
 
     <div class="col-md-12 col-sm-12 col-xs-12 jumbotron care" id="chart">
         <h3 class="white-text">چارت سازمانی</h3>
-        <img src="img/org-chart.jpg" class="img-responsive center-block" alt="Responsive image">
+        <img src=src='{% static 'img/org-chart.jpg' %}' class="img-responsive center-block" alt="Responsive image">
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 jumbotron care" id="goal">
@@ -238,7 +244,7 @@
 
         <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="thumbnail cursor small-card">
-                <a href="company-activity4.html"><img src="img/logo.jpg"></a>
+                <a href="company-activity4.html"><img src='{% static 'img/logo.jpg' %}'></a>
                 <div class="caption text-center">
                     <strong class="white-text">کوله‌پشتی امید</strong>
                 </div>
@@ -248,7 +254,7 @@
 
         <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="thumbnail cursor small-card">
-                <a href="company-activity5.html"><img src="img/logo.jpg"></a>
+                <a href="company-activity5.html"><img src='{% static 'img/logo.jpg' %}'></a>
                 <div class="caption text-center">
                     <strong class="white-text">تاسیس مهدکودک در بند زندان زنان</strong>
                 </div>
@@ -261,7 +267,7 @@
         <div class="row col-md-12 col-sm-10 col-xs-12">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="thumbnail cursor small-card">
-                    <img src="img/motamed.png" onclick="openModal();currentSlide(1)">
+                    <img src='{% static 'img/motamed.png' %}' onclick="openModal();currentSlide(1)">
                     <div class="caption text-center">
                         <strong class="white-text">دیدار فاطمه معتمدآریا از بنیاد</strong>
                     </div>
@@ -270,7 +276,7 @@
 
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="thumbnail cursor small-card">
-                    <img src="img/farhadi.png" onclick="openModal();currentSlide(2)">
+                    <img src='{% static 'img/farhadi.png' %}' onclick="openModal();currentSlide(2)">
                     <div class="caption text-center">
                         <strong class="white-text">دیدار اصغر فرهادی از بنیاد</strong>
                     </div>
@@ -279,7 +285,7 @@
 
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="thumbnail cursor small-card">
-                    <img src="img/asayesh.png" onclick="openModal();currentSlide(3)">
+                    <img src='{% static 'img/asayesh.png' %}' onclick="openModal();currentSlide(3)">
                     <div class="caption text-center">
                         <strong class="white-text">دیدار ویشگاه آسایش از بنیاد</strong>
                     </div>
@@ -288,7 +294,7 @@
 
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="thumbnail cursor small-card">
-                    <img src="img/rahnama.png" onclick="openModal();currentSlide(4)">
+                    <img src='{% static 'img/rahnama.png' %}' onclick="openModal();currentSlide(4)">
                     <div class="caption text-center">
                         <strong class="white-text">دیدار بهاره رهنما از بنیاد</strong>
                     </div>
@@ -298,7 +304,7 @@
 
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="thumbnail cursor small-card">
-                    <img src="img/piroz.png" onclick="openModal();currentSlide(5)">
+                    <img src='{% static 'img/piroz.png' %}' onclick="openModal();currentSlide(5)">
                     <div class="caption text-center">
                         <strong class="white-text">دیدار پارسا پیروزفر از بنیاد</strong>
                     </div>
@@ -313,26 +319,26 @@
 
                 <div class="mySlides">
                     <div class="numbertext">۵/۱</div>
-                    <img class='demo' src="img/motamed.png" style="width:100%" alt="فاطمه معتمدآریا">
+                    <img class='demo' src='{% static 'img/motamed.png' %}' style="width:100%" alt="فاطمه معتمدآریا">
                 </div>
 
                 <div class="mySlides">
                     <div class="numbertext">۵/۲</div>
-                    <img class='demo' src="img/farhadi.png" style="width:100%" alt="اصغر فرهادی">
+                    <img class='demo' src='{% static 'img/farhadi.png' %}' style="width:100%" alt="اصغر فرهادی">
                 </div>
 
                 <div class="mySlides">
                     <div class="numbertext">۵/۳</div>
-                    <img class='demo' src="img/asayesh.png" style="width:100%" alt="ویشگاه آسایش">
+                    <img class='demo' src='{% static 'img/asayesh.png' %}' style="width:100%" alt="ویشگاه آسایش">
                 </div>
 
                 <div class="mySlides">
                     <div class="numbertext">۵/۴</div>
-                    <img class='demo' src="img/rahnama.png" style="width:100%" alt="بهاره رهنما">
+                    <img class='demo' src='{% static 'img/rahnama.png' %}' style="width:100%" alt="بهاره رهنما">
                 </div>
                 <div class="mySlides">
                     <div class="numbertext">۵/۵</div>
-                    <img class='demo' src="img/piroz.png" style="width:100%" alt="پارسا پیروزفر">
+                    <img class='demo' src='{% static 'img/piroz.png' %}' style="width:100%" alt="پارسا پیروزفر">
                 </div>
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -375,23 +381,23 @@
         <h3 class="white-text">حامیان</h3>
         <div class="slider">
             <div class="img-row">
-                <a href="http://www.childf.com/"> <img src="img/logo-childf.png">
+                <a href="http://www.childf.com/"> <img src='{% static 'img/logo-childf.png' %}'>
                 </a>
-                <a href="http://www.un.org/en/index.html"> <img src="img/logo-un.png">
+                <a href="http://www.un.org/en/index.html"> <img src='{% static 'img/logo-un.png' %}'>
                 </a>
-                <a href="http://damavandwaters.com/fa/"> <img src="img/logo-damavand.png">
+                <a href="http://damavandwaters.com/fa/"> <img src='{% static 'img/logo-damavand.png' %}'>
                 </a>
-                <a href="http://fanap.ir/"> <img src="img/logo-fanap.png">
+                <a href="http://fanap.ir/"> <img src='{% static 'img/logo-fanap.png' %}'>
                 </a>
-                <a href="https://www.digikala.com/"> <img src="img/logo-digi.png">
+                <a href="https://www.digikala.com/"> <img src='{% static 'img/logo-digi.png' %}'>
                 </a>
-                <a href="http://780.ir/"> <img src="img/logo-780.png">
+                <a href="http://780.ir/"> <img src='{% static 'img/logo-780.png' %}'>
                 </a>
-                <a href="http://www.kanoon.ir/"> <img src="img/logo-kanoon.png">
+                <a href="http://www.kanoon.ir/"> <img src='{% static 'img/logo-kanoon.png' %}'>
                 </a>
-                <a href="http://azimkhodro.com/"> <img src="img/logo-azimkhodro.png">
+                <a href="http://azimkhodro.com/"> <img src='{% static 'img/logo-azimkhodro.png' %}'>
                 </a>
-                <a href="http://harazdairy.com/"> <img src="img/logo-haraz.png">
+                <a href="http://harazdairy.com/"> <img src='{% static 'img/logo-haraz.png' %}'>
                 </a>
 
             </div>

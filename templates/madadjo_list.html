@@ -1,16 +1,18 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="fa">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Original Bootstrap 3.3.7 -->
-    <link rel='stylesheet' id='bootstrap-css' href='css/bootstrap.min.css?ver=3.3.7' type='text/css'/>
+    <link rel='stylesheet' id='bootstrap-css' href='{% static 'css/bootstrap.min.css' %}'>
     <!-- Bootstrap RTL 3.3.7.3 -->
-    <link rel='stylesheet' id='bootstrap-rtl-css' href='css/bootstrap.rtl.min.css?ver=3.3.7.3' type='text/css'/>
+    <link rel='stylesheet' id='bootstrap-rtl-css' href='{% static 'css/bootstrap.rtl.min.css' %}'
+          type='text/css'/>
     <!-- custom and normalize -->
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href='{% static 'css/custom.css' %}'/>
+    <link rel="stylesheet" href='{% static 'css/normalize.css' %}'/>
+    <link rel="icon" href='{% static 'img/logo.png' %}'>
     <title>مشاهده‌ی مددجویان</title>
 </head>
 <body>
@@ -28,7 +30,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#"><b>بنیاد کودک</b></a>
-            <img alt="Brand" class="brand-logo" src="img/logo.png">
+            <img alt="Brand" class="brand-logo" src='{% static 'img/logo.png' %}'>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,7 +55,8 @@
                     </ul>
                 </li>
                 <li><a href="#">سلام <b>کاربر!</b></a></li>
-                <li><img src="img/logo.jpg" alt="Profile Picture" class="profile-picture-small-right"></li>
+                <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -62,18 +65,21 @@
 <!-- sidebar -->
 <div class="col-xs-12 col-md-2 sidebar">
     <ul class="nav">
-        <li><a class="text-sidebar" href="signup_madadjo.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span
+        <li><a class="text-sidebar" href="signup_madadjo.html"><span class="glyphicon glyphicon-plus"
+                                                                     aria-hidden="true"></span><span
                 class="glyphicon glyphicon-user" aria-hidden="true"></span> ثبت‌نام مددجوی جدید
         </a></li>
         <li class="active sidebar-link"><a class="text-sidebar" href="#"><span class="glyphicon glyphicon-usd"
                                                                                aria-hidden="true"></span> پرداخت
             هزینه‌ها</a></li>
-        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> صندوق
+        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope"
+                                                            aria-hidden="true"></span> صندوق
             پیام‌ها <span class="badge">۸</span></a></li>
-        <li><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> مشاهده‌ی
+        <li><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell"
+                                                                   aria-hidden="true"></span> مشاهده‌ی
             اعلان‌ها
             <span class="badge">۷</span></a></li>
-        <li  class="green_active"><!-- Link with dropdown items -->
+        <li class="green_active"><!-- Link with dropdown items -->
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
                     class="glyphicon glyphicon-user" aria-hidden="true"></span> مشاهده‌ی مددجویان <span
                     class="caret"></span></a>
@@ -81,11 +87,13 @@
                 <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> همه‌ی مددجویان</a></li>
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-star-empty"
-                                                                        aria-hidden="true"></span> مددجویان تحت‌مددکاری</a>
+                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
+                        class="glyphicon glyphicon-star-empty"
+                        aria-hidden="true"></span> مددجویان تحت‌مددکاری</a>
                 </li>
                 <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
-                                                                        aria-hidden="true"></span> مددجویان تحت‌پوشش</a>
+                                                                                        aria-hidden="true"></span>
+                    مددجویان تحت‌پوشش</a>
                 </li>
             </ul>
         </li>
@@ -97,8 +105,9 @@
                 <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> مددجو</a></li>
-                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-tree-deciduous"
-                                                                                        aria-hidden="true"></span>
+                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span
+                        class="glyphicon glyphicon-tree-deciduous"
+                        aria-hidden="true"></span>
                     همیار</a></li>
             </ul>
         </li>
@@ -111,7 +120,7 @@
 <div class="row col-xs-12 col-md-9 col-sm-10 col-md-offset-2">
     <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="thumbnail small-card">
-            <img src="img/logo.jpg" alt="عکس پروفایل">
+            <img src='{% static 'img/logo.jpg' %}' alt="عکس پروفایل">
             <div class="caption">
                 <h3>رضا</h3>
                 <p>دانش‌‌آموز توانمند و سخت‌کوش</p>
@@ -125,6 +134,6 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/butn.js"></script>
+<script src='{% static 'js/bootstrap.js' %}'></script>
+<script src='{% static 'js/butn.js' %}'></script>
 </html>

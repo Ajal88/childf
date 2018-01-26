@@ -1,16 +1,18 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="fa">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Original Bootstrap 3.3.7 -->
-    <link rel='stylesheet' id='bootstrap-css' href='css/bootstrap.min.css?ver=3.3.7' type='text/css'/>
+    <link rel='stylesheet' id='bootstrap-css' href='{% static 'css/bootstrap.min.css' %}'>
     <!-- Bootstrap RTL 3.3.7.3 -->
-    <link rel='stylesheet' id='bootstrap-rtl-css' href='css/bootstrap.rtl.min.css?ver=3.3.7.3' type='text/css'/>
+    <link rel='stylesheet' id='bootstrap-rtl-css' href='{% static 'css/bootstrap.rtl.min.css' %}'
+          type='text/css'/>
     <!-- custom and normalize -->
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href='{% static 'css/custom.css' %}'/>
+    <link rel="stylesheet" href='{% static 'css/normalize.css' %}'/>
+    <link rel="icon" href='{% static 'img/logo.png' %}'>
     <title>مشاهده‌ی مددجویان</title>
 </head>
 <body>
@@ -28,7 +30,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#"><b>بنیاد کودک</b></a>
-            <img alt="Brand" class="brand-logo" src="img/logo.png">
+            <img alt="Brand" class="brand-logo" src='{% static 'img/logo.png' %}'>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,7 +55,8 @@
                     </ul>
                 </li>
                 <li><a href="#">سلام <b>کاربر!</b></a></li>
-                <li><img src="img/logo.jpg" alt="Profile Picture" class="profile-picture-small-right"></li>
+                <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -90,8 +93,9 @@
                 <li><a href="madadkar_list.html" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> همه‌ی مددکاران</a></li>
-                <li><a href="madadkar_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
-                                                                                        aria-hidden="true"></span>
+                <li><a href="madadkar_list.html" class="text-sidebar text-submenu"><span
+                        class="glyphicon glyphicon-leaf"
+                        aria-hidden="true"></span>
                     مددکاران مرتبط با شما</a></li>
             </ul>
         </li>
@@ -103,13 +107,14 @@
                 <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> مددجو</a></li>
-                <li><a href="madadkar_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
-                                                                                        aria-hidden="true"></span>
+                <li><a href="madadkar_list.html" class="text-sidebar text-submenu"><span
+                        class="glyphicon glyphicon-leaf"
+                        aria-hidden="true"></span>
                     مددکار</a></li>
             </ul>
         </li>
         <li><a class="text-sidebar" href="madadjo_list.html"><span class="glyphicon glyphicon-gift"
-                                                               aria-hidden="true"></span>
+                                                                   aria-hidden="true"></span>
             ارسال هدیه غیر نقدی به مددجو</a></li>
         <li><a class="text-sidebar" href="f_report.html"><span class="glyphicon glyphicon-save-file"
                                                                aria-hidden="true"></span>
@@ -121,7 +126,7 @@
 <div class="row col-xs-12 col-md-9 col-sm-10 col-md-offset-2">
     <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="thumbnail small-card">
-            <img src="img/logo.jpg" alt="عکس پروفایل">
+            <img src='{% static 'img/logo.jpg' %}' alt="عکس پروفایل">
             <div class="caption">
                 <h3>قلی</h3>
                 <p>مددکار توانمند و سخت‌کوش</p>
@@ -135,6 +140,6 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/butn.js"></script>
+<script src='{% static 'js/bootstrap.js' %}'></script>
+<script src='{% static 'js/butn.js' %}'></script>
 </html>
