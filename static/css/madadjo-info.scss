@@ -1,0 +1,29 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+.back-info {
+  padding: 4rem;
+  margin-top: 8rem;
+  background-color: #ffffff;
+  position: relative;
+  @include border-radius(10px);
+}
+
+.img-profile {
+  @include border-radius(5px);
+}
+
+.more-dec {
+  margin-top: 4rem;
+}
+
+.progress-need {
+  margin-top: 3rem;
+}
+
+.pay-need {
+  margin-top: 2rem;
+}
