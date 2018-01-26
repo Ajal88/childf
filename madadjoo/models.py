@@ -86,33 +86,35 @@ class MadadjooChangeProfileRequest(ChangeProfileRequest):
     savingAmount = models.PositiveIntegerField()
     averageGradeOfLastGrade = models.PositiveIntegerField()
 
-###move this three classes from madadkar to madadjoo
+
+# move this three classes from madadkar to madadjoo
 
 class MadadkarRateTheMadadjoo(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    madadjoo = models.ForeignKey(Madadjoo)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     date = models.DateField()
     reason = models.CharField(max_length=50)
     score = models.IntegerField()
 
 
 class MadadkarRateThePayment(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    payment = models.ForeignKey(Payment)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    payment = models.ForeignKey(Payment, on_delete=models.DO_NOTHING)
     score = models.IntegerField()
 
 
 class MadadkarSupport(models.Model):
-    madadkar = models.ForeignKey(Madadkar)
-    payment = models.ForeignKey(Payment)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
-##move this two classes from modir to madadjoo
+
+# move this two classes from modir to madadjoo
 
 class SupportbyModir(models.Model):
-    modir = models.ForeignKey(Modir)
-    payment = models.ForeignKey(Payment)
+    modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
 
 class SupprtBySystem(models.Model):
-    modir = models.ForeignKey(Modir)
-    payment = models.ForeignKey(Payment)
+    modir = models.ForeignKey(Modir, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.DO_NOTHING)

@@ -2,9 +2,17 @@ $bonyad: #22390d;
 $chf-logo: rgba(188, 20, 83, 0.87);
 $grass-green: rgba(193, 235, 86, 0.64);
 
+@font-face {
+  font-family: 'XBZar';
+  src: url(https://fontlibrary.org/face/xb-zar);
+}
+
 body {
   background: $grass-green;
+  direction: rtl;
+  font-family: 'XBZar', serif;
 }
+
 #intro {
   background-image: url("../img/logo.jpg");
   background-repeat: no-repeat;
@@ -46,7 +54,6 @@ body {
   .btn-space {
     font-size: 1.1rem;
   }
-
 
 }
 

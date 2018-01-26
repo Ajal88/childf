@@ -1,5 +1,10 @@
+@font-face {
+  font-family: 'XBZar';
+  src: url(https://fontlibrary.org/face/xb-zar); }
 body {
-  background: rgba(193, 235, 86, 0.64); }
+  background: rgba(193, 235, 86, 0.64);
+  direction: rtl;
+  font-family: 'XBZar', serif; }
 
 #intro {
   background-image: url("../img/logo.jpg");

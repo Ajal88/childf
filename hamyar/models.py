@@ -15,20 +15,20 @@ class Hamyar(Karbar):
 
 
 class Support(models.Model):
-    hamyar = models.ForeignKey(Hamyar)
-    payment = models.ForeignKey(Payment)
+    hamyar = models.ForeignKey(Hamyar, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
 
-class meetTHeMadadjooRequest(Request):
-    hamyar = models.ForeignKey(Hamyar)
-    modir = models.ForeignKey(Modir)
-    madadjoo = models.ForeignKey(Madadjoo)
+class MeetTheMadadjooRequest(Request):
+    hamyar = models.ForeignKey(Hamyar, on_delete=models.DO_NOTHING)
+    modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
 
 
 class SendNonCashAidRequest(Request):
-    hamyar = models.ForeignKey(Hamyar)
-    madadkar = models.ForeignKey(Madadkar)
-    madadjoo = models.ForeignKey(Madadjoo)
+    hamyar = models.ForeignKey(Hamyar, on_delete=models.DO_NOTHING)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
 
 
 class HamyarChangeProfileRequest(ChangeProfileRequest):
