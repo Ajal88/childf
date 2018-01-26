@@ -26,7 +26,7 @@ typeOfNeedType = {
 
 
 class Madadjoo(Karbar):
-    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
+    madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
     city = models.CharField(max_length=20)
     bankAccount = models.CharField(max_length=20)
     grade = models.PositiveIntegerField()
@@ -85,3 +85,34 @@ class MadadjooChangeProfileRequest(ChangeProfileRequest):
     birthDate = models.DateField()
     savingAmount = models.PositiveIntegerField()
     averageGradeOfLastGrade = models.PositiveIntegerField()
+
+###move this three classes from madadkar to madadjoo
+
+class MadadkarRateTheMadadjoo(models.Model):
+    madadkar = models.ForeignKey(Madadkar)
+    madadjoo = models.ForeignKey(Madadjoo)
+    date = models.DateField()
+    reason = models.CharField(max_length=50)
+    score = models.IntegerField()
+
+
+class MadadkarRateThePayment(models.Model):
+    madadkar = models.ForeignKey(Madadkar)
+    payment = models.ForeignKey(Payment)
+    score = models.IntegerField()
+
+
+class MadadkarSupport(models.Model):
+    madadkar = models.ForeignKey(Madadkar)
+    payment = models.ForeignKey(Payment)
+
+##move this two classes from modir to madadjoo
+
+class SupportbyModir(models.Model):
+    modir = models.ForeignKey(Modir)
+    payment = models.ForeignKey(Payment)
+
+
+class SupprtBySystem(models.Model):
+    modir = models.ForeignKey(Modir)
+    payment = models.ForeignKey(Payment)

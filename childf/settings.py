@@ -29,6 +29,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'karbar.apps.KarbarConfig',
+    'hamyar.apps.HamyarConfig',
+    'modir.apps.ModirConfig',
+    'madadkar.apps.MadadkarConfig',
+    'madadjoo.apps.MadadjooConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

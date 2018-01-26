@@ -1,0 +1,26 @@
+.back-info {
+  padding: 4rem;
+  margin-top: 8rem;
+  background-color: #ffffff;
+  position: relative;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */ }
+
+.img-profile {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */ }
+
+.more-dec {
+  margin-top: 4rem; }
+
+.progress-need {
+  margin-top: 3rem; }
+
+.pay-need {
+  margin-top: 2rem; }
+
+/*# sourceMappingURL=madadjo-info.css.map */

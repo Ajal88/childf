@@ -1,10 +1,11 @@
 from django.db import models
 from karbar.models import Karbar
 from modir.models import Modir
-from madadjoo.models import Madadjoo
+#from madadjoo.models import Madadjoo
 from karbar.models import Request
-from madadjoo.models import Payment
+#from madadjoo.models import Payment
 from karbar.models import ChangeProfileRequest
+from karbar.models import Notification
 
 # Create your models here.
 
@@ -55,25 +56,6 @@ class MadadjooRegistrationRequest(Request):
     birthDate = models.DateField()
 
 
-class RateTheMadadjoo(models.Model):
-    madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
-    madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
-    date = models.DateField()
-    reason = models.CharField(max_length=50)
-    score = models.IntegerField()
-
-
-class RateThePayment(models.Model):
-    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
-    score = models.IntegerField()
-
-
-class Support(models.Model):
-    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
-
-
 class MadadkarChangeProfileRequest(ChangeProfileRequest):
     birthDate = models.DateField()
     city = models.CharField(max_length=20)
@@ -81,3 +63,9 @@ class MadadkarChangeProfileRequest(ChangeProfileRequest):
     address = models.CharField(max_length=100)
     salary = models.PositiveIntegerField()
     dateOfEmployeement = models.DateField()
+#this class moved from modir to madadkar
+
+class Warning(Notification):
+    modir = models.ForeignKey(Modir)
+    madadkar = models.ForeignKey(Madadkar)
+    activity = models.CharField(max_length=20)

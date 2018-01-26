@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Original Bootstrap 3.3.7 -->
+    <link rel='stylesheet' id='bootstrap-css' href='css/bootstrap.min.css?ver=3.3.7' type='text/css'/>
+    <!-- Bootstrap RTL 3.3.7.3 -->
+    <link rel='stylesheet' id='bootstrap-rtl-css' href='css/bootstrap.rtl.min.css?ver=3.3.7.3' type='text/css'/>
+    <!-- custom and normalize -->
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/madadjo-info.css"/>
+    <link rel="icon" href="img/logo.png">
+    <title>اطلاعات مددجو</title>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><b>بنیاد کودک</b></a>
+            <img alt="Brand" class="brand-logo" src="img/logo.png">
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">خانه</a></li>
+                <li class="active"><a href="madadkar.html">داشبورد</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button type="button" class="btn btn-danger navbar-btn" id="ext"><b>خروج</b></button>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">تنظیمات<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile-madadkar.html">پروفایل</a></li>
+                        <li><a href="profile-madadkar.html">تغییر رمز عبور</a></li>
+                        <li><a href="notification.html">اعلان‌ها</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="profile-madadkar.html">درخواست تغییر مشخصات کاربری</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">سلام <b>کاربر!</b></a></li>
+                <li><img src="img/logo.jpg" alt="Profile Picture" class="profile-picture-small-right"></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!-- info  -->
+<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 back-info">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+        <img src="img/logo.jpg" class="img-responsive img-profile" alt="Responsive image">
+    </div>
+    <div class=" col-md-8 col-sm-6 col-xs-6">
+        <h1><b>رضا</b></h1>
+        <h4>دانش اموز کوشا و با استعداد</h4>
+        <p>بدون پدر و مادر</p>
+    </div>
+    <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 more-dec">
+        <p>توضیحات بیشتر...</p>
+    </div>
+    <div class="table-responsive col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>نام</th>
+                <th>وضعیت تحصیلی</th>
+                <th>مقطع</th>
+                <th>معدل</th>
+                <th>محل سکونت</th>
+                <th>امتیاز</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>رضا</td>
+                <td>در حال تحصیل</td>
+                <td>دبستان</td>
+                <td>۱۸.۷</td>
+                <td>بناب</td>
+                <td>۹۸</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+        <h4><b>نیاز‌های مددجو</b></h4>
+        <br>
+        <div class="table-responsive col-md-4 col-sm-5 col-xs-5">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>نیاز</th>
+                    <th>نوع نیاز</th>
+                    <th>هزینه‌ی نیاز</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>خرج تحصیل</td>
+                    <td>ماهانه</td>
+                    <td>۵۰۰۰۰۰ تومان</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 col-sm-5 col-xs-5 progress-need">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                     style="width: 80%;">
+                    مبلغ پرداخت شده تاکنون : ۴۰۰۰۰۰ تومان
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-2 col-xs-2 pay-need">
+            <a class="btn btn-success" href="#" role="button">پرداخت نیاز مددجو</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+        <a class="btn btn-success" href="#" role="button">قراردادن تحت مددکاری</a>
+        <a class="btn btn-info" href="#" role="button">مشاهده‌ی نیازها</a>
+        <a class="btn btn-danger" href="#" role="button">تغییر نیاز</a>
+        <a class="btn btn-warning" href="#" role="button">اضافه کردن نیاز</a>
+
+        <a class="btn btn-primary" href="send_message.html" role="button">ارسال پیام</a>
+    </div>
+
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/butn.js"></script>
+</html>
