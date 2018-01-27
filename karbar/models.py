@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
+
 
 # Create your models here.
+
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.id), filename)
 
 
 sexType = {
@@ -23,11 +28,12 @@ us_type = {
 
 
 class Karbar(models.Model):
+    profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    fatherName = models.CharField(max_length=20)
+    fatherName = models.CharField(max_length=20, blank=True)
     sex = models.IntegerField(choices=sexType)
-    NationalCode = models.CharField(max_length=11)
-    phoneNumber = models.CharField(max_length=12)
+    NationalCode = models.CharField(max_length=11, blank=True)
+    phoneNumber = models.CharField(max_length=12, blank=True)
     user_type = models.IntegerField(choices=us_type)
 
     def __str__(self):
@@ -38,7 +44,7 @@ class Notification(models.Model):
     subject = models.CharField(max_length=30)
     text = models.TextField(max_length=1000)
     date = models.DateField()
-    receiveMessageStatus = models.IntegerField(choices=receiveMessageStatusType)
+    receiveMessageStatus = models.IntegerField(choices=receiveMessageStatusType, default=1)
 
     def __str__(self):
         return self.subject
@@ -50,14 +56,14 @@ class Request(Notification):
 
 class ChangeProfileRequest(Request):
     karbar = models.ForeignKey(Karbar, on_delete=models.CASCADE)
-    firstName = models.CharField(max_length=20)
-    lastName = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=30)
-    fatherName = models.CharField(max_length=20)
-    sex = models.IntegerField(choices=sexType)
-    NationalCode = models.CharField(max_length=11)
-    phoneNumber = models.CharField(max_length=12)
+    firstName = models.CharField(max_length=20, blank=True)
+    lastName = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(null=True)
+    password = models.CharField(max_length=30, blank=True)
+    fatherName = models.CharField(max_length=20, blank=True)
+    sex = models.IntegerField(choices=sexType, null=True,blank=True)
+    NationalCode = models.CharField(max_length=11, blank=True)
+    phoneNumber = models.CharField(max_length=12, blank=True)
 
 
 class Message(Notification):

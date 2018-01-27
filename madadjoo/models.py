@@ -26,19 +26,19 @@ typeOfNeedType = {
 
 
 class Madadjoo(Karbar):
-    madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
-    city = models.CharField(max_length=20)
-    bankAccount = models.CharField(max_length=20)
-    grade = models.PositiveIntegerField()
-    address = models.CharField(max_length=100)
+    madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True,blank=True)
+    city = models.CharField(max_length=20, blank=True)
+    bankAccount = models.CharField(max_length=20, blank=True)
+    grade = models.PositiveIntegerField(null=True)
+    address = models.CharField(max_length=100, blank=True)
     state = models.IntegerField(choices=stateType)
-    healthStatus = models.IntegerField(choices=healthStatusType)
-    disease = models.CharField(max_length=30)
-    educationalStatus = models.CharField(max_length=30)
-    briefDescription = models.TextField()
-    birthDate = models.DateField()
-    savingAmount = models.PositiveIntegerField()
-    averageGradeOfLastGrade = models.PositiveIntegerField()
+    healthStatus = models.IntegerField(choices=healthStatusType,default=0)
+    disease = models.CharField(max_length=30, blank=True)
+    educationalStatus = models.CharField(max_length=30, blank=True)
+    briefDescription = models.TextField(blank=True)
+    birthDate = models.DateField(null=True, blank=True)
+    savingAmount = models.PositiveIntegerField(default=0)
+    averageGradeOfLastGrade = models.PositiveIntegerField(null=True,blank=True)
 
 
 class Need(models.Model):
@@ -46,7 +46,7 @@ class Need(models.Model):
     name = models.CharField(max_length=30)
     cost = models.PositiveIntegerField()
     type = models.IntegerField(choices=typeOfNeedType)
-    resolved = models.BooleanField()
+    resolved = models.BooleanField(default=False)
 
 
 class Payment(models.Model):
@@ -68,23 +68,23 @@ class ThanksLetterSendRequest(Request):
 class Success(models.Model):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     subject = models.CharField(max_length=20)
-    description = models.TextField(max_length=200)
+    description = models.TextField(max_length=200,blank=True)
 
 
 class MadadjooChangeProfileRequest(ChangeProfileRequest):
     madadjoo = models.ForeignKey(Karbar, on_delete=models.CASCADE)
-    city = models.CharField(max_length=20)
-    bankAccount = models.CharField(max_length=20)
-    grade = models.PositiveIntegerField()
-    address = models.CharField(max_length=100)
-    state = models.IntegerField(choices=stateType)
-    healthStatus = models.IntegerField(choices=healthStatusType)
-    disease = models.CharField(max_length=30)
-    educationalStatus = models.CharField(max_length=30)
-    briefDescription = models.TextField()
-    birthDate = models.DateField()
-    savingAmount = models.PositiveIntegerField()
-    averageGradeOfLastGrade = models.PositiveIntegerField()
+    city = models.CharField(max_length=20,blank=True)
+    bankAccount = models.CharField(max_length=20,blank=True)
+    grade = models.PositiveIntegerField(null=True, blank=True)
+    address = models.CharField(max_length=100,blank=True)
+    state = models.IntegerField(choices=stateType,null=True, blank=True)
+    healthStatus = models.IntegerField(choices=healthStatusType,null=True, blank=True)
+    disease = models.CharField(max_length=30,blank=True)
+    educationalStatus = models.CharField(max_length=30,blank=True)
+    briefDescription = models.TextField(blank=True)
+    birthDate = models.DateField(null=True, blank=True)
+    savingAmount = models.PositiveIntegerField(null=True, blank=True)
+    averageGradeOfLastGrade = models.PositiveIntegerField(null=True, blank=True)
 
 
 # move this three classes from madadkar to madadjoo

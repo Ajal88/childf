@@ -27,42 +27,42 @@ healthStatusType = {
 
 
 class Madadkar(Karbar):
-    birthDate = models.DateField()
-    city = models.CharField(max_length=20)
-    education = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    salary = models.PositiveIntegerField()
-    dateOfEmployeement = models.DateField()
+    birthDate = models.DateField(null=True, blank=True)
+    city = models.CharField(max_length=20,blank=True)
+    education = models.CharField(max_length=20,blank=True)
+    address = models.CharField(max_length=100,blank=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
+    dateOfEmployeement = models.DateField(null=True, blank=True)
 
 
 class MadadjooRegistrationRequest(Request):
-    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE,null=True, blank=True)
     modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20)
-    fatherName = models.CharField(max_length=20)
+    fatherName = models.CharField(max_length=20,blank=True)
     sex = models.IntegerField(choices=sexType)
-    NationalCode = models.CharField(max_length=11)
-    phoneNumber = models.CharField(max_length=12)
-    city = models.CharField(max_length=20)
-    bankAcount = models.CharField(max_length=20)
-    grade = models.PositiveIntegerField()
-    address = models.CharField(max_length=100)
+    NationalCode = models.CharField(max_length=11,blank=True)
+    phoneNumber = models.CharField(max_length=12,blank=True)
+    city = models.CharField(max_length=20,null=True, blank=True)
+    bankAcount = models.CharField(max_length=20,blank=True)
+    grade = models.PositiveIntegerField(null=True, blank=True)
+    address = models.CharField(max_length=100,blank=True)
     state = models.IntegerField(choices=stateType)
-    healthStatus = models.IntegerField(choices=healthStatusType)
-    disease = models.CharField(max_length=30)
-    educationalStatus = models.CharField(max_length=30)
-    briefDescription = models.TextField()
-    birthDate = models.DateField()
+    healthStatus = models.IntegerField(choices=healthStatusType,default=0)
+    disease = models.CharField(max_length=30,blank=True)
+    educationalStatus = models.CharField(max_length=30,blank=True)
+    briefDescription = models.TextField(blank=True)
+    birthDate = models.DateField(null=True, blank=True)
 
 
 class MadadkarChangeProfileRequest(ChangeProfileRequest):
-    birthDate = models.DateField()
-    city = models.CharField(max_length=20)
-    education = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    salary = models.PositiveIntegerField()
-    dateOfEmployeement = models.DateField()
+    birthDate = models.DateField(null=True, blank=True)
+    city = models.CharField(max_length=20,blank=True)
+    education = models.CharField(max_length=20,blank=True)
+    address = models.CharField(max_length=100,blank=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
+    dateOfEmployeement = models.DateField(null=True, blank=True)
 
 
 # this class moved from modir to madadkar

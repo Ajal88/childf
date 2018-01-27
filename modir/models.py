@@ -11,12 +11,12 @@ from karbar.models import Notification
 
 
 class Modir(Karbar):
-    birthDate = models.DateField()
-    city = models.CharField(max_length=20)
-    education = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    salary = models.PositiveIntegerField()
-    dateOfEmployeement = models.DateField()
+    birthDate = models.DateField(null=True, blank=True)
+    city = models.CharField(max_length=20,blank=True)
+    education = models.CharField(max_length=20,blank=True)
+    address = models.CharField(max_length=100,blank=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
+    dateOfEmployeement = models.DateField(null=True, blank=True)
     savingAmountOfSystem = models.PositiveIntegerField()
 
 
