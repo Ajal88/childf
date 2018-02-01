@@ -34,3 +34,32 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django stuff:
+*.log
+*.pot
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+__pycache__/
+*.pyc
