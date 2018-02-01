@@ -61,7 +61,7 @@ class ChangeProfileRequest(Request):
     email = models.EmailField(null=True)
     password = models.CharField(max_length=30, blank=True)
     fatherName = models.CharField(max_length=20, blank=True)
-    sex = models.IntegerField(choices=sexType, null=True,blank=True)
+    sex = models.IntegerField(choices=sexType, null=True, blank=True)
     NationalCode = models.CharField(max_length=11, blank=True)
     phoneNumber = models.CharField(max_length=12, blank=True)
 
