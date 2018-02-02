@@ -16,6 +16,9 @@ class Hamyar(models.Model):
 
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
+    def __str__(self):
+        return self.karbar.user.username + ' hamyar id' + str(self.id)
+
 
 class Support(models.Model):
     hamyar = models.ForeignKey(Hamyar, on_delete=models.CASCADE)

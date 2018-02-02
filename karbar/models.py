@@ -36,7 +36,7 @@ class Karbar(models.Model):
     user_type = models.IntegerField(choices=us_type, null=True)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.user.username
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

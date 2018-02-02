@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-import hamyar.views
+from django.contrib.auth import views as auth_views
+import karbar
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^madadjoo/', include('madadjoo.urls')),
     url(r'^hamyar/', include('hamyar.urls')),
     url(r'^auth/', include('karbar.urls')),
-    url(r'^auth/signup$', hamyar.views.signup, name='register'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    url(r'^$', karbar.home, name='home'),
 ]

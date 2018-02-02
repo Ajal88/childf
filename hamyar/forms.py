@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
-    phoneNumber = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'form-control'}))
+    email = forms.CharField(max_length=254, required=True,
+                            widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}))
+    phoneNumber = forms.CharField(required=True,
+                                  widget=forms.TextInput(
+                                      attrs={'placeholder': 'Phone Number', 'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -14,5 +17,10 @@ class SignUpForm(UserCreationForm):
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}),
         }
-
-# pleaase add me
+        '''
+        error_messages = {
+            'password_mismatch': _('گذرواژه‌ها مطابقت ندارند'),
+            'unique': _('نام کاربری تکراری است'),
+            'required': _('وارد کردن این فیلد ضروری است'),
+        }
+        '''
