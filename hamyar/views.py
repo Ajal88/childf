@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # from django.http import JsonResponse
-# from hamyar.forms import SignUpForm
+from hamyar.forms import SignUpForm
 from .models import *
 from karbar.models import *
 
