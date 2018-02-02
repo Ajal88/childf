@@ -34,10 +34,9 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.karbar.phoneNumber = form.cleaned_data.get('phoneNumber')
             user.karbar.user_type = 2
 
-            hamyar = Hamyar(email=form.cleaned_data.get('email'))
+            hamyar = Hamyar(phoneNumber=form.cleaned_data.get('phoneNumber'), karbar=user.karbar)
             user.save()
             hamyar.save()
 
