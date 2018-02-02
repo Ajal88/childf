@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 # from django.http import JsonResponse
 from hamyar.forms import SignUpForm
 from .models import *
+from karbar.models import *
 
 
 # Create your views here.
@@ -14,11 +15,13 @@ def index(request):
     return HttpResponse("Hello, world. You're at my hamyar index.")
 
 
+@login_required
 def inbox(request):
-    # maybe worng! TODO
-    if Karbar.objects.filter(token=request.META['HTTP_X_TOKEN']).count() == 1:
-        pass
-
+    if request.user.is_authenticated():
+        username = request.user.username
+        msg = []
+        msg = Message.objects.filter(receiver=username)
+        return render(msg, 'inbox.html')
 
 @login_required
 def home(request):
