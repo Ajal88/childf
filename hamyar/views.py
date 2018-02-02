@@ -15,15 +15,14 @@ def index(request):
     return render(request, 'hamyar.html')
 
 
-@login_required
-def inbox(request):
-    if request.user.is_authenticated():
-        username = request.user.username
-        msg = []
-        msg = Message.objects.filter(receiver=username)
-        return render(request, 'inbox.html', {'msg_list': msg})
-    else:
-        return redirect('home')
+# @login_required
+def inbox(request, username):
+    # if request.user.is_authenticated():
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'inbox.html', {'msg_list': msg})
 
 
 @login_required
