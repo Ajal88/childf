@@ -14,3 +14,5 @@ class SignUpForm(UserCreationForm):
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}),
         }
+
+# pleaase add me
