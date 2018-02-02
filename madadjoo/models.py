@@ -29,17 +29,23 @@ typeOfNeedType = {
     (2, 'یکباره')
 }
 
+typeOfGrade = {
+    (0, 'دبستان'),
+    (1, 'دبیرستان'),
+    (2, 'دانشحو'),
+    (3, 'غیر محصل')
+}
+
 
 class Madadjoo(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
-    firstName = models.CharField(max_length=20)
-    lastName = models.CharField(max_length=20)
+
     NationalCode = models.CharField(max_length=11, null=True, blank=True)
     madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True, blank=True)
     city = models.CharField(max_length=20, blank=True)
     bankAccount = models.CharField(max_length=20, blank=True)
-    grade = models.PositiveIntegerField(null=True)
+    grade = models.IntegerField(choices=typeOfGrade,null=True,blank=True)
     address = models.CharField(max_length=100, blank=True)
     state = models.IntegerField(choices=stateType)
     healthStatus = models.IntegerField(choices=healthStatusType, default=0)

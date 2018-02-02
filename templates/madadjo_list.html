@@ -118,17 +118,19 @@
 
 <!-- list -->
 <div class="row col-xs-12 col-md-9 col-sm-10 col-md-offset-2">
+    {% for madadjoo in madadjooHa %}
     <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="thumbnail small-card">
             <img src='{% static 'img/logo.jpg' %}' alt="عکس پروفایل">
             <div class="caption">
-                <h3>رضا</h3>
-                <p>دانش‌‌آموز توانمند و سخت‌کوش</p>
-                <p>بدون پدر و مادر</p>
-                <p><a href="madadjo.html" class="btn btn-default btn-sm" role="button">مشاهده‌ی اطلاعات</a>
+                <h3>{{madadjoo.karbar.user.first_name }}</h3>
+                <p>وضعیت تحصیلی : {{madadjoo.educationalStatus}}</p>
+                <p>{{madadjoo.get_state_display}}</p>
+                <p><a href="http://localhost:8000/madadjoo/{{madadjoo.karbar.user.username}}/" class="btn btn-default btn-sm" role="button">مشاهده‌ی اطلاعات</a>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 </body>
