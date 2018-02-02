@@ -7,3 +7,5 @@ from django.http import JsonResponse
 
 def index(Request):
     return HttpResponse("Hello, world. You're at my hamyar index.")
+
+def inbox()
