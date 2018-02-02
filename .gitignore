@@ -63,5 +63,6 @@ var/
 nosetests.xml
 coverage.xml
 
-__pycache__/
+*/__pycache__/
+*/migrations/__pycache__/
 *.pyc
