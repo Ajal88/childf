@@ -24,7 +24,6 @@ def inbox(request, username):
     msg = Message.objects.filter(receiver=krbr)
     return render(request, 'inbox.html', {'msg_list': msg})
 
-
 @login_required
 def home(request):
     return render(request, 'hamyar.html')
