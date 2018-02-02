@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+import hamyar.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^madadjoo/', include('madadjoo.urls')),
     url(r'^hamyar/', include('hamyar.urls')),
-    # url(r'^auth/', include('karbar.urls')),
+    url(r'^auth/', include('karbar.urls')),
+    url(r'^auth/signup$', hamyar.views.signup, name='register'),
 ]

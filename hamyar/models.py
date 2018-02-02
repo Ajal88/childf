@@ -1,17 +1,20 @@
 from django.db import models
-from karbar.models import Karbar
-from madadjoo.models import Payment
-from madadjoo.models import Madadjoo
-from karbar.models import Request
-from modir.models import Modir
-from madadkar.models import Madadkar
+
 from karbar.models import ChangeProfileRequest
+from karbar.models import Karbar
+from karbar.models import Request
+from madadjoo.models import Madadjoo
+from madadjoo.models import Payment
+from madadkar.models import Madadkar
+from modir.models import Modir
 
 
 # Create your models here.
 
-class Hamyar(Karbar):
-    pass
+class Hamyar(models.Model):
+    karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
+
+    phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
 
 class Support(models.Model):

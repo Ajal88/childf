@@ -1,11 +1,16 @@
 from django.db import models
-from karbar.models import Karbar
-from madadkar.models import Madadkar
-from karbar.models import Request
-from modir.models import Modir
+
 from karbar.models import ChangeProfileRequest
+from karbar.models import Karbar
+from karbar.models import Request
+from madadkar.models import Madadkar
+from modir.models import Modir
 
 # Create your models here.
+sexType = {
+    (0, 'خانم'),
+    (1, 'آقا')
+}
 
 stateType = {
     (0, 'نیازمند'),
@@ -25,20 +30,28 @@ typeOfNeedType = {
 }
 
 
-class Madadjoo(Karbar):
-    madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True,blank=True)
+class Madadjoo(models.Model):
+    karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
+
+    firstName = models.CharField(max_length=20)
+    lastName = models.CharField(max_length=20)
+    NationalCode = models.CharField(max_length=11, null=True, blank=True)
+    madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True, blank=True)
     city = models.CharField(max_length=20, blank=True)
     bankAccount = models.CharField(max_length=20, blank=True)
     grade = models.PositiveIntegerField(null=True)
     address = models.CharField(max_length=100, blank=True)
     state = models.IntegerField(choices=stateType)
-    healthStatus = models.IntegerField(choices=healthStatusType,default=0)
+    healthStatus = models.IntegerField(choices=healthStatusType, default=0)
     disease = models.CharField(max_length=30, blank=True)
     educationalStatus = models.CharField(max_length=30, blank=True)
     briefDescription = models.TextField(blank=True)
     birthDate = models.DateField(null=True, blank=True)
     savingAmount = models.PositiveIntegerField(default=0)
-    averageGradeOfLastGrade = models.PositiveIntegerField(null=True,blank=True)
+    averageGradeOfLastGrade = models.PositiveIntegerField(null=True, blank=True)
+    sex = models.IntegerField(choices=sexType)
+    fatherName = models.CharField(max_length=20)
+    phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
 
 class Need(models.Model):
@@ -68,19 +81,19 @@ class ThanksLetterSendRequest(Request):
 class Success(models.Model):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     subject = models.CharField(max_length=20)
-    description = models.TextField(max_length=200,blank=True)
+    description = models.TextField(max_length=200, blank=True)
 
 
 class MadadjooChangeProfileRequest(ChangeProfileRequest):
     madadjoo = models.ForeignKey(Karbar, on_delete=models.CASCADE)
-    city = models.CharField(max_length=20,blank=True)
-    bankAccount = models.CharField(max_length=20,blank=True)
+    city = models.CharField(max_length=20, blank=True)
+    bankAccount = models.CharField(max_length=20, blank=True)
     grade = models.PositiveIntegerField(null=True, blank=True)
-    address = models.CharField(max_length=100,blank=True)
-    state = models.IntegerField(choices=stateType,null=True, blank=True)
-    healthStatus = models.IntegerField(choices=healthStatusType,null=True, blank=True)
-    disease = models.CharField(max_length=30,blank=True)
-    educationalStatus = models.CharField(max_length=30,blank=True)
+    address = models.CharField(max_length=100, blank=True)
+    state = models.IntegerField(choices=stateType, null=True, blank=True)
+    healthStatus = models.IntegerField(choices=healthStatusType, null=True, blank=True)
+    disease = models.CharField(max_length=30, blank=True)
+    educationalStatus = models.CharField(max_length=30, blank=True)
     briefDescription = models.TextField(blank=True)
     birthDate = models.DateField(null=True, blank=True)
     savingAmount = models.PositiveIntegerField(null=True, blank=True)
