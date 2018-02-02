@@ -12,16 +12,18 @@ from karbar.models import *
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello, world. You're at my hamyar index.")
+    return render(request, 'hamyar.html')
 
 
-@login_required
-def inbox(request):
-    if request.user.is_authenticated():
-        username = request.user.username
-        msg = []
-        msg = Message.objects.filter(receiver=username)
-        return render(msg, 'inbox.html')
+# @login_required
+def inbox(request, username):
+    # if request.user.is_authenticated():
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'inbox.html', {'msg_list': msg})
+
 
 @login_required
 def home(request):
