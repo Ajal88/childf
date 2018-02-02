@@ -122,9 +122,11 @@
         <p>{{ msg.text }}</p>
         <small>{{ msg.date }}</small>
         <h4><b>پاسخ پیام</b></h4>
-        <textarea class="form-control" rows="3"></textarea>
-        <br>
-        <p><a class="btn btn-info" href="#" role="button">ارسال پاسخ</a></p>
+        <form action="/sendmail/" method="post">
+            <textarea class="form-control" id="text" rows="3"></textarea>
+            <br>
+            <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>
+        </form>
     </div>
 {% empty %}
     <li>متاسفانه هیچ پیامی موجود نیست</li>

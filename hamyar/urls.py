@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'dashboard/(?P<username>\D+)/$', views.show_dashboard, name='hamyar_dashboard'),
 
     url(r'signup/$', views.signup, name='signup'),
+    url(r'inbox/sendmail/$', views.sendmail, name='sendmail'),
 ]
