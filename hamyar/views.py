@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # from django.http import JsonResponse
-from hamyar.forms import SignUpForm
+# from hamyar.forms import SignUpForm
 from .models import *
 from karbar.models import *
 
@@ -12,7 +12,7 @@ from karbar.models import *
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello, world. You're at my hamyar index.")
+    return render(request, 'hamyar.html')
 
 
 @login_required
@@ -21,7 +21,10 @@ def inbox(request):
         username = request.user.username
         msg = []
         msg = Message.objects.filter(receiver=username)
-        return render(msg, 'inbox.html')
+        return render(request, 'inbox.html', {'msg_list': msg})
+    else:
+        return redirect('home')
+
 
 @login_required
 def home(request):
