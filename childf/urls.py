@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-import karbar
+import karbar.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^hamyar/', include('hamyar.urls')),
     url(r'^auth/', include('karbar.urls')),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    url(r'^$', karbar.home, name='home'),
+    url(r'^$', karbar.views.home, name='home'),
 ]
