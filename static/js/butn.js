@@ -3,10 +3,10 @@ $(document).ready(function () {
         window.location = 'http://127.0.0.1:8000/';
     });
     $('#sgup').on('click', function (e) {
-        window.location = 'signup.html';
+        window.location = 'http://127.0.0.1:8000/hamyar/signup/';
     });
 
     $('#help').on('click', function (e) {
-       window.location = 'login.html';
+       window.location = 'http://127.0.0.1:8000/auth/login';
     });
 });
