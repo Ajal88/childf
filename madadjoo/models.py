@@ -67,8 +67,10 @@ class Need(models.Model):
     name = models.CharField(max_length=30)
     cost = models.PositiveIntegerField()
     type = models.IntegerField(choices=typeOfNeedType)
+    amountpayed =  models.PositiveIntegerField()
     resolved = models.BooleanField(default=False)
-
+    def __str__(self):
+        return self.name
 
 class Payment(models.Model):
     need = models.ForeignKey(Need, on_delete=models.CASCADE)
