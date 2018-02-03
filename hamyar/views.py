@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 # from django.http import JsonResponse
-from hamyar.forms import SignUpForm
+from hamyar.forms import *
 from karbar.models import *
 from .models import *
 
@@ -21,7 +21,14 @@ def inbox(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'inbox.html', {'msg_list': msg})
+    form_send = SendReply()
+    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send})
+
+
+def send_reply(request):
+    if request.method == 'POST':
+        form_reply = SendReply(request.POST)
+
 
 @login_required
 def show_dashboard(request, username):

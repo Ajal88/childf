@@ -25,3 +25,8 @@ class SignUpForm(UserCreationForm):
             'required': _('وارد کردن این فیلد ضروری است'),
         }
         '''
+
+
+class SendReply(forms.Form):
+    text = forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'})
+    receiver = forms.CharField(widget=forms.HiddenInput())
