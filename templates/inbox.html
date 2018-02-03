@@ -125,7 +125,7 @@
         <p>{{ msg.text }}</p>
         <small>{{ msg.date }}</small>
         <h4><b>پاسخ پیام</b></h4>
-        <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="post" role="form">
+        <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="POST" role="form">
             {{ form.text }}
             <br>
             <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>

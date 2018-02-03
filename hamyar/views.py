@@ -25,10 +25,10 @@ def inbox(request, username):
     return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send})
 
 
-def send_reply(request, rcver, sender, subject):
+def send_reply(request, receiver, sender, subject):
     if request.method == 'POST':
         form_reply = SendReply(request.POST)
-        rcvr = rcver
+        rcvr = receiver
         sndr = sender
         txt = form_reply.text
         sbjct = subject
@@ -40,7 +40,7 @@ def send_reply(request, rcver, sender, subject):
         msg = Message(subject=sbjct, text=txt, receiver=krbr_rcvr, sender=krbr_sndr)
         msg.save()
         url = 'http://127.0.0.1:8000/hamyar/inbox' + str(sender)
-        redirect(url)
+        return redirect(url)
 
 
 
