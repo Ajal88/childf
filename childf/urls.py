@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+
 import karbar.views
 
 urlpatterns = [
@@ -23,6 +24,8 @@ urlpatterns = [
     url(r'^madadjoo/', include('madadjoo.urls')),
     url(r'^hamyar/', include('hamyar.urls')),
     url(r'^auth/', include('karbar.urls')),
+    url(r'^madadkar/', include('madadkar.urls')),
+    url(r'^modir/', include('modir.urls')),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^$', karbar.views.home, name='home'),
 ]

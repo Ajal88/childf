@@ -46,7 +46,7 @@ def signup(request):
             user = authenticate(username=user.username, password=raw_password)
 
             login(request, user)
-            dash_board_url = 'hamyar/dashboard/' + user.username
+            dash_board_url = '/hamyar/dashboard/' + user.username
             return redirect(dash_board_url)
     else:
 

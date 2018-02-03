@@ -26,6 +26,8 @@ class Modir(models.Model):
     dateOfEmployeement = models.DateField(null=True, blank=True)
     savingAmountOfSystem = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.karbar.user.username
 
 class News(Notification):
     modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)

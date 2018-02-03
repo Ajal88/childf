@@ -59,6 +59,8 @@ class Madadjoo(models.Model):
     fatherName = models.CharField(max_length=20)
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
+    def __str__(self):
+        return self.karbar.user.username
 
 class Need(models.Model):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)

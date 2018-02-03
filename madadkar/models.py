@@ -41,6 +41,8 @@ class Madadkar(models.Model):
     dateOfEmployeement = models.DateField(null=True, blank=True)
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
+    def __str__(self):
+        return self.karbar.user.username
 
 class MadadjooRegistrationRequest(Request):
     madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE, null=True, blank=True)
