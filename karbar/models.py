@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 
 # Create your models here.
@@ -56,6 +57,11 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.subject
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.date = timezone.now()
+        return super(Notification, self).save(*args, **kwargs)
 
 
 class Request(Notification):

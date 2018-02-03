@@ -27,4 +27,4 @@ class SignUpForm(UserCreationForm):
 
 
 class SendReply(forms.Form):
-    text = forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'})
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'}))

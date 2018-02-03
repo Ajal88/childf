@@ -25,16 +25,23 @@ def inbox(request, username):
     return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send})
 
 
-def send_reply(request):
+def send_reply(request, rcver, sender, subject):
     if request.method == 'POST':
         form_reply = SendReply(request.POST)
-        rcvr = form_reply.receiver
+        rcvr = rcver
+        sndr = sender
         txt = form_reply.text
-        sbjct = form_reply.subject
+        sbjct = subject
         sbjct = 're: ' + str(sbjct)
         user = User.objects.get(username=rcvr)
-        krbr = Karbar.objects.get(user=user)
-        msg = Notification(subject=sbjct)
+        krbr_rcvr = Karbar.objects.get(user=user)
+        user = User.objects.get(username=sndr)
+        krbr_sndr = Karbar.objects.get(user=user)
+        msg = Message(subject=sbjct, text=txt, receiver=krbr_rcvr, sender=krbr_sndr)
+        msg.save()
+        url = 'http://127.0.0.1:8000/hamyar/inbox' + str(sender)
+        redirect(url)
+
 
 
 @login_required
