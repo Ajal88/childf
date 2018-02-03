@@ -28,6 +28,13 @@ def inbox(request, username):
 def send_reply(request):
     if request.method == 'POST':
         form_reply = SendReply(request.POST)
+        rcvr = form_reply.receiver
+        txt = form_reply.text
+        sbjct = form_reply.subject
+        sbjct = 're: ' + str(sbjct)
+        user = User.objects.get(username=rcvr)
+        krbr = Karbar.objects.get(user=user)
+        msg = Notification(subject=sbjct)
 
 
 @login_required

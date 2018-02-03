@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-
 class SignUpForm(UserCreationForm):
     email = forms.CharField(max_length=254, required=True,
                             widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}))
@@ -29,4 +28,3 @@ class SignUpForm(UserCreationForm):
 
 class SendReply(forms.Form):
     text = forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'})
-    receiver = forms.CharField(widget=forms.HiddenInput())

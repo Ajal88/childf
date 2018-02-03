@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load addattr %}
+{% load widget_tweaks %}
+
 <html lang="fa">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -123,9 +125,8 @@
         <p>{{ msg.text }}</p>
         <small>{{ msg.date }}</small>
         <h4><b>پاسخ پیام</b></h4>
-        <form method="post" role="form">
+        <form action="{% http://127.0.0.1:8000/sendmail  'msg.sender' 'msg.subject' %}" method="post" role="form">
             {{ form.text }}
-            {{ form.receiver|addvalue: msq.sender }}
             <br>
             <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>
         </form>
