@@ -75,3 +75,11 @@ def signup(request):
         form = SignUpForm()
         print('in else')
     return render(request, 'signup.html', {'form': form})
+
+
+def create_message(request, username):
+    pass
+
+
+def send_message(request, receiver, sender):
+    pass
