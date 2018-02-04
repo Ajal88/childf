@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from .forms import MadadkarSignUpForm
 from .models import Madadkar
+from madadjoo.models import Madadjoo
 
 
 @login_required
@@ -44,3 +45,11 @@ def madsignup(request):
     else:
         form = MadadkarSignUpForm()
     return render(request, 'signup_madadkar.html', {'form': form})
+
+def madadjo_list(request,username):
+    c = Madadjoo.objects.all()
+    return render(request, 'madadjo_list.html', {'madadjooHa': c})
+
+def madadjo_list_madadkar(request,username):
+    c = Madadjoo.objects.filter(madadkar_field__karbar__user__username=username)
+    return render(request, 'madadjo_list.html', {'madadjooHa': c})
