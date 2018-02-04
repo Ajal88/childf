@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 import karbar.views
+import madadjoo.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', karbar.views.home, name='home'),
     url(r'^company_info/', karbar.views.company_inf, name='cmp_info'),
     url(r'^auth/', include('karbar.urls')),
+    url(r'^search/', madadjoo.views.search, name='search'),
     url(r'^madadjoo/', include('madadjoo.urls')),
     url(r'^hamyar/', include('hamyar.urls')),
     url(r'^madadkar/', include('madadkar.urls')),

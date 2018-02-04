@@ -1,4 +1,3 @@
-from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from django.shortcuts import render, redirect
@@ -6,6 +5,7 @@ from django.shortcuts import render, redirect
 from karbar.models import Karbar
 from .forms import *
 from .models import Madadjoo, Need, MadadkarChangeRequest
+from .filters import MadadjooFilter
 
 
 @login_required
@@ -30,6 +30,12 @@ def madadjoo(request, username):
     return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n})
 
 
+def search(request):
+    madadjoo_list = Madadjoo.objects.all()
+    madadjoo_filter = MadadjooFilter(request.GET, queryset=madadjoo_list)
+    return render(request, 'madadjoo_search.html', {'filter': madadjoo_filter})
+
+
 def madsignup(request):
     if request.method == 'POST':
         print('in post')
@@ -51,6 +57,7 @@ def madsignup(request):
                                     healthStatus=form.cleaned_data.get('healthStatus'),
                                     disease=form.cleaned_data.get('disease'),
                                     educationalStatus=form.cleaned_data.get('educationalStatus'),
+                                    averageGradeOfLastGrade=form.cleaned_data.get('averageGradeOfLastGrade'),
                                     briefDescription=form.cleaned_data.get('briefDescription'), karbar=user.karbar)
 
             new_madadjoo.save()

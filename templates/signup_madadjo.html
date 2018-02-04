@@ -198,6 +198,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="ave" class="col-sm-3 control-label">
+                       آخرین معدل</label>
+                    {{ form.averageGradeOfLastGrade.errors}}
+                    <div class="col-sm-9">
+                        {{ form.averageGradeOfLastGrade|addcss:"form-control" }}
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="dec-madadjo" class="col-sm-3 control-label">
                         توضیحات مختصری از مددجو</label>
                     {{ form.briefDescription.errors }}

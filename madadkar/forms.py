@@ -31,7 +31,8 @@ class MadadkarSignUpForm(UserCreationForm):
     education = forms.CharField(max_length=30, initial='-', widget=forms.TextInput(
         attrs={'placeholder': 'Education', 'class': 'form-control'}))
 
-    salary = forms.IntegerField(min_value=0)
+    salary = forms.IntegerField(min_value=0, initial=0,
+                                widget=forms.NumberInput(attrs={'placeholder': 'Education', 'class': 'form-control'}))
 
     reg_user = forms.CharField(required=True,
                                widget=forms.TextInput(

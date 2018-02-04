@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Original Bootstrap 3.3.7 -->
+    <link rel='stylesheet' id='bootstrap-css' href='{% static 'css/bootstrap.min.css' %}'>
+    <!-- Bootstrap RTL 3.3.7.3 -->
+    <link rel='stylesheet' id='bootstrap-rtl-css' href='{% static 'css/bootstrap.rtl.min.css' %}'
+          type='text/css'/>
+    <!-- custom and normalize -->
+    <link rel="stylesheet" href='{% static 'css/custom.css' %}'/>
+    <link rel="stylesheet" href='{% static 'css/normalize.css' %}'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src='{% static 'js/bootstrap.js' %}'></script>
+    <script src='{% static 'js/butn.js' %}'></script>
+    <link rel="icon" href='{% static 'img/logo.png' %}'>
+    <title>جستجوی مددجو</title>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><b>بنیاد کودک</b></a>
+            <img alt="Brand" class="brand-logo" src='{% static 'img/logo.png' %}'>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="http://127.0.0.1:8000/">خانه</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!-- signup panel -->
+<div class="col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-1 col-xs-9 col-xs-offset-1 sign-panel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-lock"></span> جستجو میان مددجویان
+        </div>
+        <div class="panel-body">
+            <form method="get" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="sex" class="col-sm-3 control-label">
+                        جنسیت</label>
+                    <div class="col-sm-9">
+                        {% render_field filter.form.sex class="form-control" %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="col-sm-3 control-label">
+                        وضعیت کلی مددجو</label>
+                    <div class="col-sm-9">
+                        {% render_field filter.form.state class="form-control" %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="statehealth" class="col-sm-3 control-label">
+                        وضعیت سلامت جسمی و روحی</label>
+                    <div class="col-sm-9">
+                        {% render_field filter.form.healthStatus class="form-control" %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edu" class="col-sm-3 control-label">
+                        وضعیت تحصیل</label>
+                    <div class="col-sm-9">
+                        {% render_field filter.form.grade class="form-control" %}
+                    </div>
+                </div>
+                <div class="form-group last">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            جستجو
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>جنسیت</th>
+                    <th>وضعیت کلی</th>
+                    <th>شهر</th>
+                    <th>وضعیت سلامت جسمی و روحی</th>
+                    <th>بیماری</th>
+                    <th>مشاهده</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for madadjoo in filter.qs %}
+                    <tr>
+                        <td>{{ madadjoo.karbar.user.first_name }}</td>
+                        <td>{{ madadjoo.get_sex_display }}</td>
+                        <td>{{ madadjoo.get_state_display }}</td>
+                        <td>{{ madadjoo.city }}</td>
+                        <td>{{ madadjoo.get_healthStatus_display }}</td>
+                        <td>{{ madadjoo.disease }}</td>
+                        <td><a href='http://127.0.0.1:8000/hamyar/signup/' title="edit"><span class="glyphicon glyphicon-leaf"
+                                                          aria-hidden="true"></span></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

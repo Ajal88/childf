@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
 from karbar.choice import *
 from .models import Madadjoo
 
@@ -52,6 +53,9 @@ class MadadjooSignUpForm(UserCreationForm):
     educationalStatus = forms.CharField(max_length=30, initial='-', widget=forms.TextInput(
         attrs={'placeholder': 'Education', 'class': 'form-control'}))
 
+    averageGradeOfLastGrade = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(
+        attrs={'placeholder': 'Disease', 'class': 'form-control'}))
+
     briefDescription = forms.CharField(initial='-',
                                        widget=forms.TextInput(
                                            attrs={'placeholder': 'Brief Description', 'class': 'form-control'}))
@@ -81,8 +85,7 @@ class MadadjooSignUpForm(UserCreationForm):
         fields = (
             'username', 'first_name', 'last_name', 'NationalCode', 'bankAccount', 'fatherName', 'city',
             'birthDate', 'grade', 'sex', 'address', 'phoneNumber', 'state', 'healthStatus', 'disease',
-            'educationalStatus',
-            'briefDescription', 'reg_user', 'password1', 'password2')
+            'educationalStatus', 'averageGradeOfLastGrade', 'briefDescription', 'reg_user', 'password1', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
         }
