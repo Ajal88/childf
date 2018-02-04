@@ -12,6 +12,10 @@ urlpatterns = [
     url(r'send_message/(?P<receiver>\D+)/(?P<sender>\D+)/$', views.send_message, name='send_message'),
     url(r'notification/(?P<username>\D+)/$', views.get_notif, name='get_notif'),
     url(r'madadjo_list/(?P<username>\D+)/$', views.get_madadjo_list, name='get_madadjo_list'),
-    url(r'create_message_madadjo/(?P<username>\D+)/$', views.create_message, name='create_message'),
-    url(r'create_message_madadkar/(?P<username>\D+)/$', views.create_message, name='create_message'),
+    url(r'create_message_madadjo/(?P<username>\D+)/$', views.create_message_madadjo, name='create_message_madadjo'),
+    url(r'create_message_madadkar/(?P<username>\D+)/$', views.create_message_madadkar, name='create_message_madadkar'),
+    url(r'get_madadjo_list_all/(?P<username>\D+)/$', views.get_madadjo_list_all, name='get_madadjo_list_all'),
+    url(r'get_madadkar_list_all/(?P<username>\D+)/$', views.get_madadkar_list_all, name='get_madadkar_list_all'),
+    url(r'get_madadkar_list/(?P<username>\D+)/$', views.get_madadkar_list, name='get_madadkar_list'),
+    url(r'get_financial_report/(?P<username>\D+)/$', views.get_financial_report, name='get_financial_report'),
 ]

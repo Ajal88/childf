@@ -95,3 +95,25 @@ def get_madadjo_list(request, username):
 
 def get_financial_report(request, username):
     pass
+
+
+def get_madadjo_list_all(request, username):
+    pass
+
+
+def get_madadkar_list_all(request, username):
+    pass
+
+
+def get_madadkar_list(request, username):
+    pass
+
+
+def create_message_madadjo(request, username):
+    pass
+
+
+def create_message_madadkar(request, username):
+    pass
+
+

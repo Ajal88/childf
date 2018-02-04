@@ -7,3 +7,10 @@ def show_dashboard(request, username):
     return render(request, 'modir.html', {'uname': username})
 
 
+def show_message_to_all(request, username):
+    return render(request, 'modir_send_to_all.html', {'uname': username})
+
+
+def send_message_to_all(request, username):
+    pass
+
