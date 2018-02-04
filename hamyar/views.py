@@ -47,7 +47,7 @@ def send_reply(request, receiver, sender, subject):
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'hamyar.html')
+    return render(request, 'hamyar.html', {'uname': username})
 
 
 def signup(request):
@@ -82,4 +82,16 @@ def create_message(request, username):
 
 
 def send_message(request, receiver, sender):
+    pass
+
+
+def get_notif(request, username):
+    pass
+
+
+def get_madadjo_list(request, username):
+    pass
+
+
+def get_financial_report(request, username):
     pass

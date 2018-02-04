@@ -5,4 +5,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'madadkar.html')
+    return render(request, 'madadkar.html', {'uname': username})

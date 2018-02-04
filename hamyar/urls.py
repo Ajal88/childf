@@ -9,5 +9,9 @@ urlpatterns = [
     url(r'dashboard/(?P<username>\D+)/$', views.show_dashboard, name='hamyar_dashboard'),
     url(r'signup/$', views.signup, name='signup'),
     url(r'create_message/(?P<username>\D+)/$', views.create_message, name='create_message'),
-    url(r'send_message/(?P<receiver>\D+)/(?P<sender>\D+)/$', views.send_message, name='send_message')
+    url(r'send_message/(?P<receiver>\D+)/(?P<sender>\D+)/$', views.send_message, name='send_message'),
+    url(r'notification/(?P<username>\D+)/$', views.get_notif, name='get_notif'),
+    url(r'madadjo_list/(?P<username>\D+)/$', views.get_madadjo_list, name='get_madadjo_list'),
+    url(r'create_message_madadjo/(?P<username>\D+)/$', views.create_message, name='create_message'),
+    url(r'create_message_madadkar/(?P<username>\D+)/$', views.create_message, name='create_message'),
 ]

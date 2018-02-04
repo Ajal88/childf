@@ -10,7 +10,7 @@ from .models import Madadjoo, Need
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'madadjo_dash.html')
+    return render(request, 'madadjo_dash.html', {'uname': username})
 
 
 def madadjooHa(request):
