@@ -86,3 +86,7 @@ class MadadjooSignUpForm(UserCreationForm):
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
         }
+
+
+class Report(forms.Form):
+    report_text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'}))

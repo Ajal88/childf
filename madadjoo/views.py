@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from karbar.models import Karbar
 from .forms import *
-from .models import Madadjoo, Need
+from .models import Madadjoo, Need, MadadkarChangeRequest
 
 
 @login_required
@@ -79,3 +79,19 @@ def madsignup(request):
     else:
         form = MadadjooSignUpForm()
     return render(request, 'signup_madadjo.html', {'form': form})
+
+
+def report_hamyar(request, username):
+    if request.method == 'POST':
+        report_form = Report(request.POST)
+        if report_form.is_valid():
+            data = report_form.cleaned_data
+            r_txt = data['report_text']
+            mj = User.objects.get(username=username)
+            krbr_mj = Karbar.objects.get(user=mj)
+            krbr_mr = Karbar.objects.get(us_type=3)
+            report_hy = MadadkarChangeRequest(madadjoo=krbr_mj, modir=krbr_mr, text=r_txt,
+                                              subject='درخواست تغییر مددکار')
+            report_hy.save()
+            url = 'http://127.0.0.1:8000/madadjoo/dashboard/' + str(username)
+            return redirect(url)
