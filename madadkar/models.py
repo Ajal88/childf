@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from karbar.choice import *
 # from madadjoo.models import Payment
@@ -14,8 +15,6 @@ class Madadkar(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
     NationalCode = models.CharField(max_length=11)
-    firstName = models.CharField(max_length=20, blank=True, null=True)
-    lastName = models.CharField(max_length=20, blank=True, null=True)
     birthDate = models.DateField(null=True, blank=True)
     city = models.CharField(max_length=20, blank=True)
     education = models.CharField(max_length=20, blank=True)
@@ -26,6 +25,11 @@ class Madadkar(models.Model):
 
     def __str__(self):
         return self.karbar.user.username
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.dateOfEmployeement = timezone.now().date()
+        return super(Madadkar, self).save(*args, **kwargs)
 
 
 class MadadjooRegistrationRequest(Request):
