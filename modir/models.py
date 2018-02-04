@@ -22,6 +22,10 @@ class Modir(models.Model):
     dateOfEmployeement = models.DateField(null=True, blank=True)
     savingAmountOfSystem = models.PositiveIntegerField()
 
+    class Meta:
+        verbose_name = 'مدیر'
+        verbose_name_plural = 'مدیران'
+
     def __str__(self):
         return self.karbar.user.username
 
@@ -29,3 +33,7 @@ class Modir(models.Model):
 class News(Notification):
     modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
     receivers = models.ManyToManyField(Karbar, related_name='reciverKarbar')
+
+    class Meta:
+        verbose_name = 'اعلان'
+        verbose_name_plural = 'اعلان‌ها'

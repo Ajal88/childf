@@ -16,10 +16,19 @@ def get_image_path(instance, filename):
 class Karbar(models.Model):
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.IntegerField(choices=us_type, null=True)
+    user_type = models.IntegerField('نوع کاربر', choices=us_type, null=True)
+
+    class Meta:
+        verbose_name = 'کاربر'
+        verbose_name_plural = 'کاربران'
 
     def __str__(self):
         return self.user.username
+
+    def karbar_username(self):
+        return self.user.username
+
+    karbar_username.short_description = 'نام کاربری'
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -45,9 +54,15 @@ class Notification(models.Model):
             self.date = timezone.now()
         return super(Notification, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'اعلان'
+        verbose_name_plural = 'اعلان‌ها'
+
 
 class Request(Notification):
-    pass
+    class Meta:
+        verbose_name = 'درخواست'
+        verbose_name_plural = 'درخواست‌ها'
 
 
 class ChangeProfileRequest(Request):
@@ -65,3 +80,7 @@ class ChangeProfileRequest(Request):
 class Message(Notification):
     sender = models.ForeignKey(Karbar, related_name='sender', on_delete=models.DO_NOTHING)
     receiver = models.ForeignKey(Karbar, related_name='receiver', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'درخواست پیام'
+        verbose_name_plural = 'درخواست‌های پیام‌ها'

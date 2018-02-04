@@ -30,3 +30,6 @@ urlpatterns = [
     url(r'^modir/', include('modir.urls')),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 ]
+
+admin.site.site_header = 'مدیریت وبگاه موسسه‌ی بنیاد کودک'
+admin.site.site_title = 'موسسه‌ی بنیاد کودک'

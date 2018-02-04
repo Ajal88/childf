@@ -5,8 +5,10 @@ from karbar.models import *
 
 
 class KarbarAdmin(admin.ModelAdmin):
-    # fields = ['id', 'user__username', 'phone_number']
-    list_display = ['id', 'user_type']
+    list_display = ['id', 'karbar_username', 'user_type']
+    list_filter = ['user_type']
+    search_fields = ['user_type', 'user__username', 'id']
+
 
 
 UserAdmin.add_fieldsets = (

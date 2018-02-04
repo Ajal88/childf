@@ -23,7 +23,14 @@ class Madadkar(models.Model):
     dateOfEmployeement = models.DateField(null=True, blank=True)
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'مددکار'
+        verbose_name_plural = 'مددکاران'
+
     def __str__(self):
+        return self.karbar.user.username
+
+    def madadkar_username(self):
         return self.karbar.user.username
 
     def save(self, *args, **kwargs):
@@ -52,6 +59,10 @@ class MadadjooRegistrationRequest(Request):
     briefDescription = models.TextField(blank=True)
     birthDate = models.DateField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'درخواست ثبت‌نام مددجو'
+        verbose_name_plural = 'درخواست‌های ثبت‌نام مددجو'
+
 
 class MadadkarChangeProfileRequest(ChangeProfileRequest):
     birthDate = models.DateField(null=True, blank=True)
@@ -61,6 +72,10 @@ class MadadkarChangeProfileRequest(ChangeProfileRequest):
     salary = models.PositiveIntegerField(null=True, blank=True)
     dateOfEmployeement = models.DateField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'درخواست تغییر مشخصات'
+        verbose_name_plural = 'درخواست‌های تغییر مشخصات'
+
 
 # this class moved from modir to madadkar
 
@@ -68,3 +83,7 @@ class Warning(Notification):
     modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)
     madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE)
     activity = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name = 'هشدار'
+        verbose_name_plural = 'هشدارها'

@@ -29,6 +29,10 @@ class Madadjoo(models.Model):
     fatherName = models.CharField(max_length=20)
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'مددجو'
+        verbose_name_plural = 'مددجویان'
+
     def __str__(self):
         return self.karbar.user.username
 
@@ -43,6 +47,10 @@ class Need(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'نیاز'
+        verbose_name_plural = 'نیازها'
 
 
 class Payment(models.Model):

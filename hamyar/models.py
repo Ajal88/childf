@@ -14,10 +14,19 @@ from modir.models import Modir
 class Hamyar(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
-    phoneNumber = models.CharField(max_length=12, null=True, blank=True)
+    phoneNumber = models.CharField('شماره تلفن',max_length=12, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'همیار'
+        verbose_name_plural = 'همیاران'
 
     def __str__(self):
         return self.karbar.user.username + ' hamyar id' + str(self.id)
+
+    def hamyar_username(self):
+        return self.karbar.user.username
+
+    hamyar_username.short_description = 'نام کاربری همیار'
 
 
 class Support(models.Model):
