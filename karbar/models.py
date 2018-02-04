@@ -6,29 +6,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 
+from .choice import *
 
-# Create your models here.
 
 def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.id), filename)
-
-
-sexType = {
-    (0, 'خانم'),
-    (1, 'آقا')
-}
-
-receiveMessageStatusType = {
-    (0, 'دریافت شد'),
-    (1, 'دریافت نشد')
-}
-
-us_type = {
-    (0, 'madadkar'),
-    (1, 'madadjoo'),
-    (2, 'hamyar'),
-    (3, 'modir')
-}
 
 
 class Karbar(models.Model):

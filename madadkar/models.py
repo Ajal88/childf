@@ -1,5 +1,6 @@
 from django.db import models
 
+from karbar.choice import *
 # from madadjoo.models import Payment
 from karbar.models import ChangeProfileRequest
 from karbar.models import Karbar
@@ -7,24 +8,6 @@ from karbar.models import Notification
 # from madadjoo.models import Madadjoo
 from karbar.models import Request
 from modir.models import Modir
-
-# Create your models here.
-
-sexType = {
-    (0, 'خانم'),
-    (1, 'آقا')
-}
-
-stateType = {
-    (0, 'نیازمند'),
-    (1, 'مستعد'),
-    (2, 'یتیم')
-}
-
-healthStatusType = {
-    (0, 'سالم'),
-    (1, 'بیمار')
-}
 
 
 class Madadkar(models.Model):
@@ -43,6 +26,7 @@ class Madadkar(models.Model):
 
     def __str__(self):
         return self.karbar.user.username
+
 
 class MadadjooRegistrationRequest(Request):
     madadkar = models.ForeignKey(Madadkar, on_delete=models.CASCADE, null=True, blank=True)

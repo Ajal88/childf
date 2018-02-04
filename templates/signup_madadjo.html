@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load addattr %}
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -120,149 +121,157 @@
             <span class="glyphicon glyphicon-lock"></span> ثبت‌نام مددجو
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form">
+            <form method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">
+                        نام کاربری</label>
+                    {{ form.username.errors }}
+                    <div class="col-sm-9">
+                        {{ form.username }}
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="firstname" class="col-sm-3 control-label">
                         نام</label>
+                    {{ form.first_name.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="firstname" placeholder="Firstname"
-                               required>
+                        {{ form.first_name }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastname" class="col-sm-3 control-label">
                         نام خانوادگی</label>
+                    {{ form.last_name.errors }}
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="lastname" placeholder="Lastname"
-                               required>
+                        {{ form.last_name }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="icode" class="col-sm-3 control-label">
                         کدملی</label>
+                    {{ form.NationalCode.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="icode" placeholder="National Code"
-                               required>
+                        {{ form.NationalCode }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bank-account" class="col-sm-3 control-label">
                         شماره حساب بانکی</label>
+                    {{ form.bankAccount.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="bank-account" placeholder="Bank Account"
-                               required>
+                        {{ form.bankAccount }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="father-name" class="col-sm-3 control-label">
                         نام پدر</label>
+                    {{ form.fatherName.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="father-name" placeholder="Father Name"
-                               required>
+                        {{ form.fatherName }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="city" class="col-sm-3 control-label">
                         شهر</label>
+                    {{ form.city.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="city" placeholder="City"
-                               required>
+                        {{ form.city }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="birth-date" class="col-sm-3 control-label">
                         تاریخ‌تولد</label>
+                    {{ form.birthDate.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="birth-date" placeholder="Birth Date"
-                               required>
+                        {{ form.birthDate }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="grade" class="col-sm-3 control-label">
                         مقطع‌تحصیلی</label>
+                    {{ form.grade.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="grade" placeholder="Grade"
-                               required>
+                        {{ form.grade }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="sex" class="col-sm-3 control-label">
                         جنسیت</label>
+                    {{ form.sex.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="sex" placeholder="Sex"
-                               required>
+                        {{ form.sex }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-sm-3 control-label">
                         آدرس محل سکونت</label>
+                    {{ form.address.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="address" placeholder="Address"
-                               required>
+                        {{ form.address }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="state" class="col-sm-3 control-label">
                         وضعیت کلی مددجو</label>
+                    {{ form.state.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="state" placeholder="State"
-                               required>
+                        {{ form.state }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="health" class="col-sm-3 control-label">
                         وضعیت سلامت جسمی و روحی</label>
+                    {{ form.healthStatus.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="health" placeholder="Health"
-                               required>
+                        {{ form.healthStatus }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="disease" class="col-sm-3 control-label">
                         نوع بیماری جسمی</label>
+                    {{ form.disease.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="disease" placeholder="Disease"
-                               required>
+                        {{ form.disease }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="education" class="col-sm-3 control-label">
                         وضعیت تحصیل</label>
+                    {{ form.educationalStatus.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="education" placeholder="Education"
-                               required>
+                        {{ form.educationalStatus }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="dec-madadjo" class="col-sm-3 control-label">
                         توضیحات مختصری از مددجو</label>
+                    {{ form.briefDescription.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="dec-madadjo" placeholder="Brief Description"
-                               required>
+                        {{ form.briefDescription }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="recome" class="col-sm-3 control-label">
-                        معرف</label>
+                        ثبت‌نام‌کننده</label>
+                    {{ form.reg_user.errors }}
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="recome" placeholder="Recommended By ..."
-                               required>
+                        {{ form.reg_user }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-3 control-label">
                         گذرواژه</label>
+                    {{ form.password1.errors }}
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword3"
-                               placeholder="Password" required>
+                       {{ form.password1|addcss:"form-control" }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="reinputPassword3" class="col-sm-3 control-label">
                         تکرار گذرواژه</label>
+                    {{ form.password2.errors }}
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="reinputPassword3"
-                               placeholder="Password" required>
+                        {{ form.password2|addcss:"form-control" }}
                     </div>
                 </div>
                 <div class="form-group last">

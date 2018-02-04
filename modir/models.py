@@ -7,10 +7,6 @@ from karbar.models import Notification
 
 # from madadjoo.models import Payment
 
-
-# Create your models here.
-
-
 class Modir(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
@@ -28,6 +24,7 @@ class Modir(models.Model):
 
     def __str__(self):
         return self.karbar.user.username
+
 
 class News(Notification):
     modir = models.ForeignKey(Modir, on_delete=models.DO_NOTHING)

@@ -1,14 +1,14 @@
 $(document).ready(function () {
     $('#support').on('click', function (e) {
-        window.location = 'index.html#list-holder';
+        window.location = 'http://127.0.0.1:8000/#list-holder';
     });
 
     $('#sgup').on('click', function (e) {
-        window.location = 'signup.html';
+        window.location = 'http://127.0.0.1:8000/hamyar/signup/';
     });
 
     $('#help').on('click', function (e) {
-       window.location = 'login.html';
+        window.location = 'http://127.0.0.1:8000/auth/login/';
     });
 
     $('a[href^="#"]').on('click', function (e) {

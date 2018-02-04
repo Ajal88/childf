@@ -47,3 +47,9 @@ def mylogin(request):
 
 def home(request):
     return render(request, 'index.html')
+
+
+def company_inf(request):
+    return render(request, 'company_info.html')
+
+# TODO password reset - mina

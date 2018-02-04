@@ -1,51 +1,21 @@
 from django.db import models
 
+from karbar.choice import *
 from karbar.models import ChangeProfileRequest
 from karbar.models import Karbar
 from karbar.models import Request
 from madadkar.models import Madadkar
 from modir.models import Modir
 
-# Create your models here.
-sexType = {
-    (0, 'خانم'),
-    (1, 'آقا')
-}
-
-stateType = {
-    (0, 'نیازمند'),
-    (1, 'مستعد'),
-    (2, 'یتیم')
-}
-
-healthStatusType = {
-    (0, 'سالم'),
-    (1, 'بیمار')
-}
-
-typeOfNeedType = {
-    (0, 'ماهانه'),
-    (1, 'هفتگی'),
-    (2, 'یکباره')
-}
-
-typeOfGrade = {
-    (0, 'دبستان'),
-    (1, 'دبیرستان'),
-    (2, 'دانشحو'),
-    (3, 'غیر محصل')
-}
-
 
 class Madadjoo(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
-
-    NationalCode = models.CharField(max_length=11, null=True, blank=True)
+    NationalCode = models.CharField(max_length=11, unique=True)
     madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True, blank=True)
     city = models.CharField(max_length=20, blank=True)
     bankAccount = models.CharField(max_length=20, blank=True)
-    grade = models.IntegerField(choices=typeOfGrade,null=True,blank=True)
+    grade = models.IntegerField(choices=typeOfGrade, null=True, blank=True)
     address = models.CharField(max_length=100, blank=True)
     state = models.IntegerField(choices=stateType)
     healthStatus = models.IntegerField(choices=healthStatusType, default=0)
@@ -62,15 +32,18 @@ class Madadjoo(models.Model):
     def __str__(self):
         return self.karbar.user.username
 
+
 class Need(models.Model):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     cost = models.PositiveIntegerField()
     type = models.IntegerField(choices=typeOfNeedType)
-    amountpayed =  models.PositiveIntegerField()
+    amountpayed = models.PositiveIntegerField()
     resolved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
+
 
 class Payment(models.Model):
     need = models.ForeignKey(Need, on_delete=models.CASCADE)

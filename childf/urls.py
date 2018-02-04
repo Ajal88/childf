@@ -21,11 +21,12 @@ import karbar.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', karbar.views.home, name='home'),
+    url(r'^company_info/', karbar.views.company_inf, name='cmp_info'),
+    url(r'^auth/', include('karbar.urls')),
     url(r'^madadjoo/', include('madadjoo.urls')),
     url(r'^hamyar/', include('hamyar.urls')),
-    url(r'^auth/', include('karbar.urls')),
     url(r'^madadkar/', include('madadkar.urls')),
     url(r'^modir/', include('modir.urls')),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    url(r'^$', karbar.views.home, name='home'),
 ]
