@@ -39,7 +39,7 @@ def madsignup(request):
             user = form.save()
             user.refresh_from_db()
             user.karbar.user_type = 1
-
+            print(form.cleaned_data.get('NationalCode'))
             new_madadjoo = Madadjoo(phoneNumber=form.cleaned_data.get('phoneNumber'),
                                     fatherName=form.cleaned_data.get('fatherName'), sex=form.cleaned_data.get('sex'),
                                     birthDate=form.cleaned_data.get('birthDate'),
@@ -56,11 +56,12 @@ def madsignup(request):
             new_madadjoo.save()
             user.save()
             reg_username = form.cleaned_data.get('reg_user')
+            print('reg_username')
             user = User.objects.get(username=reg_username)
             krbr = Karbar.objects.get(user=user)
 
-            raw_password = form.cleaned_data.get('password1')
-            authenticate(username=user.username, password=raw_password)
+            # raw_password = form.cleaned_data.get('password1')
+            # authenticate(username=user.username, password=raw_password)
 
             if krbr.user_type == 0:
                 # madadkar

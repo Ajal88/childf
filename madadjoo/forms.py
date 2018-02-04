@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from karbar.choice import *
+from .models import Madadjoo
 
 
 class MadadjooSignUpForm(UserCreationForm):
@@ -60,18 +61,28 @@ class MadadjooSignUpForm(UserCreationForm):
                                    attrs={'placeholder': 'Registerer Username', 'class': 'form-control'}))
 
     def clean_reg_user(self):
-        data = self.cleaned_data['reg_user']
+        data = self.cleaned_data.get('reg_user')
         try:
             User.objects.get(username=data)
-        except:
+            return data
+        except User.DoesNotExist:
             raise forms.ValidationError('invalid register user')
+
+    def clean_NationalCode(self):
+        data = self.cleaned_data.get('NationalCode')
+        try:
+            Madadjoo.objects.get(NationalCode=data)
+            raise forms.ValidationError('Duplicate National Code')
+        except Madadjoo.DoesNotExist:
+            return data
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'phoneNumber', 'fatherName', 'sex',
-                  'birthDate',
-                  'NationalCode', 'bankAccount', 'city', 'grade', 'address', 'state', 'healthStatus', 'disease',
-                  'educationalStatus', 'briefDescription', 'reg_user')
+        fields = (
+            'username', 'first_name', 'last_name', 'NationalCode', 'bankAccount', 'fatherName', 'city',
+            'birthDate', 'grade', 'sex', 'address', 'phoneNumber', 'state', 'healthStatus', 'disease',
+            'educationalStatus',
+            'briefDescription', 'reg_user', 'password1', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
         }
