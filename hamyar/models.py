@@ -15,7 +15,7 @@ class Hamyar(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
     phoneNumber = models.CharField('شماره تلفن',max_length=12, null=True, blank=True)
-
+    payed = models.PositiveIntegerField(default=0)
     class Meta:
         verbose_name = 'همیار'
         verbose_name_plural = 'همیاران'
