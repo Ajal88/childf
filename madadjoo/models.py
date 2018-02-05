@@ -39,11 +39,11 @@ class Madadjoo(models.Model):
 
 class Need(models.Model):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    cost = models.PositiveIntegerField()
-    type = models.IntegerField(choices=typeOfNeedType)
-    amountpayed = models.PositiveIntegerField()
-    resolved = models.BooleanField(default=False)
+    name = models.CharField('نام نیاز', max_length=30)
+    cost = models.PositiveIntegerField('هزینه')
+    type = models.IntegerField('نوع نیاز', choices=typeOfNeedType)
+    amountpayed = models.PositiveIntegerField('مقدار پرداخت شده')
+    resolved = models.BooleanField('برطرف شدن', default=False)
 
     def __str__(self):
         return self.name
@@ -52,16 +52,30 @@ class Need(models.Model):
         verbose_name = 'نیاز'
         verbose_name_plural = 'نیازها'
 
+    def give_need_madadjoo(self):
+        return self.madadjoo.karbar.user.username
+
+    give_need_madadjoo.short_description = 'نام کاربری مددجو'
+
 
 class Payment(models.Model):
     need = models.ForeignKey(Need, on_delete=models.CASCADE)
-    amount = models.IntegerField()
-    date = models.DateField()
+    amount = models.IntegerField('مقدار پرداخت')
+    date = models.DateField('تاریخ')
 
     class Meta:
         verbose_name = 'پرداخت'
         verbose_name_plural = 'پرداخت‌ها'
 
+    def give_madadjoo(self):
+        return self.need.madadjoo.karbar.user.username
+
+    give_madadjoo.short_description = 'نام کاربری مددجو'
+
+    def give_need_name(self):
+        return self.need.name
+
+    give_need_name.short_description = 'نام نیاز'
 
 class MadadkarChangeRequest(Request):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
