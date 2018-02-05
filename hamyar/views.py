@@ -77,13 +77,14 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def send_message(request, receiver, sender):
+def send_message(request, sender):
     if request.method == 'POST':
         form_msg = SendMessage(request.POST)
         if form_msg.is_valid():
             data_msg = form_msg.cleaned_data
             subjct = data_msg['subject']
             text = data_msg['text']
+            receiver = data_msg['receiver']
             user = User.objects.get(username=receiver)
             krbr_rcvr = Karbar.objects.get(user=user)
             user = User.objects.get(username=sender)
