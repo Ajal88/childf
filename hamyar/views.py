@@ -104,7 +104,8 @@ def get_madadjo_list(request, username):
 
 
 def get_financial_report(request, username):
-    pass
+    hamyar = Hamyar.objects.get(karbar__user__username=username)
+
 
 
 def get_madadjo_list_all(request, username):

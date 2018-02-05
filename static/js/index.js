@@ -32,7 +32,11 @@ $(document).ready(function () {
     });
 
     $('#help').on('click', function (e) {
-       window.location = 'http://127.0.0.1:8000/auth/login/';
+        window.location = 'http://127.0.0.1:8000/auth/login/';
+    });
+
+    $('#search').on('click', function (e) {
+        window.location = 'http://127.0.0.1:8000/search/';
     });
 
 });
