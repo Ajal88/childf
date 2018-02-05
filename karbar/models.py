@@ -58,6 +58,7 @@ class Notification(models.Model):
         verbose_name = 'اعلان'
         verbose_name_plural = 'اعلان‌ها'
 
+
 class Request(Notification):
     class Meta:
         verbose_name = 'درخواست'
@@ -79,6 +80,7 @@ class ChangeProfileRequest(Request):
 class Message(Notification):
     sender = models.ForeignKey(Karbar, related_name='sender', on_delete=models.DO_NOTHING)
     receiver = models.ForeignKey(Karbar, related_name='receiver', on_delete=models.CASCADE)
+
     class Meta:
         verbose_name = 'درخواست پیام'
         verbose_name_plural = 'درخواست‌های پیام‌ها'

@@ -8,12 +8,6 @@ from karbar.models import *
 from .models import *
 
 
-# Create your views here.
-
-def index(request):
-    return render(request, 'hamyar.html')
-
-
 # @login_required
 def inbox(request, username):
     # if request.user.is_authenticated():
@@ -47,7 +41,10 @@ def send_reply(request, receiver, sender, subject):
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'hamyar.html', {'uname': username})
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'hamyar.html', {'uname': username, 'msg_list': msg})
 
 
 def signup(request):
@@ -128,3 +125,7 @@ def create_message_madadjo(request, username):
 def create_message_madadkar(request, username):
     form = SendMessage()
     return render(request, 'send_message.html', {'uname': username, 'form': form})
+
+
+def profile_hamyar(request, username):
+    return render(request, 'profile-hamyar.html', {'uname': username})
