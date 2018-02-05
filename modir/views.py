@@ -40,7 +40,7 @@ def get_notif(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'inbox.html', {'msg_list': msg , 'uname': username})
+    return render(request, 'notification.html', {'msg_list': msg , 'uname': username})
 
 
 
