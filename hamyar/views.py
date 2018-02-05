@@ -77,12 +77,22 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def create_message(request, username):
-    pass
-
-
 def send_message(request, receiver, sender):
-    pass
+    if request.method == 'POST':
+        form_msg = SendMessage(request.POST)
+        if form_msg.is_valid():
+            data_msg = form_msg.cleaned_data
+            subjct = data_msg['subject']
+            text = data_msg['text']
+            user = User.objects.get(username=receiver)
+            krbr_rcvr = Karbar.objects.get(user=user)
+            user = User.objects.get(username=sender)
+            krbr_sndr = Karbar.objects.get(user=user)
+            msg = Message(subject=subjct, text=text, receiver=krbr_rcvr, sender=krbr_sndr)
+            msg.save()
+            url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(sender)
+            return redirect(url)
+
 
 
 def get_notif(request, username):
@@ -112,8 +122,12 @@ def get_madadkar_list(request, username):
 
 
 def create_message_madadjo(request, username):
-    pass
+    form = SendMessage()
+    return render(request, 'send_message.html', {'uname': username, 'form': form})
 
 
 def create_message_madadkar(request, username):
-    pass
+    form = SendMessage()
+    return render(request, 'send_message.html', {'uname': username, 'form': form})
+
+
