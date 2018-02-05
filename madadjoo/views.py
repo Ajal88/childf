@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from karbar.models import Karbar
 from .forms import *
 from .models import Madadjoo, Need, MadadkarChangeRequest
+from .filters import MadadjooFilter, NeedFilter
 from .filters import MadadjooFilter
 from hamyar.models import Hamyar
 from madadkar.models import Madadkar
@@ -31,6 +32,11 @@ def madadjoo(request, username):
 
     return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n})
 
+
+def needSearch(request, username):
+    need_list = Need.objects.filter(madadjoo__karbar__user__username=username)
+    need_filter = NeedFilter(request.GET, queryset=need_list)
+    return render(request, 'madadjoo_need.html', {'filter': need_filter, 'uname': username})
 
 def search(request):
     madadjoo_list = Madadjoo.objects.all()

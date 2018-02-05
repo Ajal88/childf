@@ -58,6 +58,10 @@ class Payment(models.Model):
     amount = models.IntegerField()
     date = models.DateField()
 
+    class Meta:
+        verbose_name = 'پرداخت'
+        verbose_name_plural = 'پرداخت‌ها'
+
 
 class MadadkarChangeRequest(Request):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
@@ -111,6 +115,9 @@ class MadadkarSupport(models.Model):
     madadkar = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING)
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'حمایت‌ مددکار'
+        verbose_name_plural = 'حمایت‌های مددکار'
 
 # move this two classes from modir to madadjoo
 
