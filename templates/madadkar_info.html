@@ -68,7 +68,7 @@
         <img src='{% static 'img/logo.jpg' %}' class="img-responsive img-profile" alt="Responsive image">
     </div>
     <div class=" col-md-8 col-sm-6 col-xs-6">
-        <h1><b>قلی زیبا</b></h1>
+        <h1><b>{{madadkar.karbar.user.first_name}}</b></h1>
         <h4>مددکار کوشا و با استعداد</h4>
         <p>درجه ۲</p>
     </div>
@@ -82,21 +82,21 @@
                 <th>نام</th>
                 <th>نام‌خانوادگی</th>
                 <th>وضعیت تحصیلی</th>
-                <th>مقطع</th>
-                <th>معدل</th>
+                <th>شماره تلفن</th>
+                <th>کد ملی</th>
                 <th>محل سکونت</th>
-                <th>امتیاز</th>
+               <<!-- <th>امتیاز</th>-->>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>قلی</td>
-                <td>زیبا</td>
-                <td>در حال تحصیل</td>
-                <td>دکترا</td>
-                <td>۱۸.۷</td>
-                <td>تهران</td>
-                <td>۹۸</td>
+                <td>{{madadkar.karbar.user.first_name}}</td>
+                <td>{{madadkar.karbar.user.last_name}}</td>
+                <td>{{madadkar.education}}</td>
+                <td>{{madadkar.birthDate}}</td>
+                <td>{{madadkar.NationalCode}}</td>
+                <td>{{madadkar.address}}</td>
+              <<!--  <td>۹۸</td>-->
             </tr>
             </tbody>
         </table>
@@ -107,24 +107,29 @@
         <div class="table-responsive col-md-8 col-sm-8 col-xs-8">
             <table class="table table-striped">
                 <thead>
+
                 <tr>
                     <th>نام</th>
                     <th>وضعیت تحصیلی</th>
                     <th>مقطع</th>
                     <th>معدل</th>
                     <th>محل سکونت</th>
-                    <th>امتیاز</th>
+                 <<!--   <th>امتیاز</th>-->
                 </tr>
+
                 </thead>
                 <tbody>
+                {% for madadjoo in madadjooHA %}
                 <tr>
-                    <td>رضا</td>
-                    <td>در حال تحصیل</td>
-                    <td>دبستان</td>
-                    <td>۱۸.۷</td>
-                    <td>بناب</td>
-                    <td>۹۸</td>
+
+                    <td>{{madadjoo.karbar.user.first_name}}</td>
+                    <td>{{madadjoo.educationalStatus}}</td>
+                    <td>{{madadjoo.get_grade_display}}</td>
+                    <td>{{madadjoo.averageGradeOfLastGrade}}</td>
+                    <td>{{madadjoo.address}}</td>
+                   <<!-- <td>۹۸</td>-->
                 </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

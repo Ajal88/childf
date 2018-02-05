@@ -7,6 +7,8 @@ from .forms import *
 from .models import Madadjoo, Need, MadadkarChangeRequest
 from .filters import MadadjooFilter
 from hamyar.models import Hamyar
+from madadkar.models import Madadkar
+
 
 @login_required
 def show_dashboard(request, username):
@@ -103,13 +105,15 @@ def report_hamyar(request, username):
             url = 'http://127.0.0.1:8000/madadjoo/dashboard/' + str(username)
             return redirect(url)
 
+
 def madadkar_info(request, username):
-#    a = Madadjoo.objects.filter(madadkar__karbar__user__username=username).values_list(
-#        'payment__need__madadjoo__karbar__id').all()
-    c=1
-    return render(request, 'madadjo.html', {'madadkar': c})
+    a = Madadjoo.objects.filter(karbar__user__username=username).values_list(
+        'madadkar_field__karbar__user__username').all()
+    b = Madadkar.objects.get(karbar__user__username__in=a)
+    c = Madadjoo.objects.filter(madadkar_field=b)
+    return render(request, 'madadkar_info.html', {'madadkar': b, 'madadjooHA': c})
 
 
-def hamyar_list(request,username):
+def hamyar_list(request, username):
     c = Hamyar.objects.all()
     return render(request, 'hamyar_list.html', {'hamyar_list': c})
