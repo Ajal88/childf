@@ -141,3 +141,11 @@ def create_message(request, username):
 
 def profile_madadkar(request, username):
     return render(request, 'profile-madadkar.html', {'uname', username})
+
+def get_notif(request, username):
+    def get_notif(request, username):
+        msg = []
+        user = User.objects.get(username=username)
+        krbr = Karbar.objects.get(user=user)
+        msg = Message.objects.filter(receiver=krbr)
+        return render(request, 'notification.html', {'msg_list': msg, 'uname': username})

@@ -94,7 +94,12 @@ def send_message(request, sender):
 
 
 def get_notif(request, username):
-    pass
+    def get_notif(request, username):
+        msg = []
+        user = User.objects.get(username=username)
+        krbr = Karbar.objects.get(user=user)
+        msg = Message.objects.filter(receiver=krbr)
+        return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
 
 
 def get_financial_report(request, username):
