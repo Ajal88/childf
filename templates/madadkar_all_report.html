@@ -40,81 +40,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="http://127.0.0.1:8000/">خانه</a></li>
-                <li class="active"><a href="madadkar.html">داشبورد</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <button type="button" class="btn btn-danger navbar-btn" id="ext"><b>خروج</b></button>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">تنظیمات<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="profile-madadkar.html">پروفایل</a></li>
-                        <li><a href="profile-madadkar.html">تغییر رمز عبور</a></li>
-                        <li><a href="notification.html">اعلان‌ها</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="profile-madadkar.html">درخواست تغییر مشخصات کاربری</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">سلام <b>کاربر!</b></a></li>
-                <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
-                </li>
+                <li class="active"><a href="{% url 'madadkar_dashboard' username=uname %}">داشبورد</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
-<!-- sidebar -->
-<div class="col-xs-12 col-md-2 sidebar">
-    <ul class="nav">
-        <li><a class="text-sidebar" href="signup_madadjo.html"><span class="glyphicon glyphicon-plus"
-                                                                     aria-hidden="true"></span><span
-                class="glyphicon glyphicon-user" aria-hidden="true"></span> ثبت‌نام مددجوی جدید
-        </a></li>
-        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope"
-                                                            aria-hidden="true"></span> صندوق
-            پیام‌ها <span class="badge">۸</span></a></li>
-        <li><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell"
-                                                                   aria-hidden="true"></span> مشاهده‌ی
-            اعلان‌ها
-            <span class="badge">۷</span></a></li>
-        <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
-                    class="glyphicon glyphicon-user" aria-hidden="true"></span> مشاهده‌ی مددجویان <span
-                    class="caret"></span></a>
-            <ul class="collapse list-unstyled nav" id="homeSubmenu">
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-grain"
-                        aria-hidden="true"></span> همه‌ی مددجویان</a></li>
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-star-empty"
-                        aria-hidden="true"></span> مددجویان تحت‌مددکاری</a></li>
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
-                                                                                        aria-hidden="true"></span>
-                    مددجویان تحت‌پوشش</a></li>
-            </ul>
-        </li>
-        <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
-                    class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ارسال پیام <span
-                    class="caret"></span></a>
-            <ul class="collapse list-unstyled nav" id="homeSubmenu3">
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-grain"
-                        aria-hidden="true"></span> مددجو</a></li>
-                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-tree-deciduous"
-                        aria-hidden="true"></span>
-                    همیار</a></li>
-            </ul>
-        </li>
-        <li><a class="text-sidebar" href="{% url 'get_financial_report' username=uname %}"><span
-                class="glyphicon glyphicon-save-file"
-                aria-hidden="true"></span>
-            دریافت گزارش مالی</a></li>
-    </ul>
-</div>
 
 <!-- signup panel -->
 <div class="col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-1 col-xs-9 col-xs-offset-1 sign-panel">
