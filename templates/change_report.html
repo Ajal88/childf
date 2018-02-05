@@ -65,7 +65,7 @@
             <span class="glyphicon glyphicon-lock"></span> درخواست تغییر مشخصات
         </div>
         <div class="panel-body">
-            <form method="post" action="{% url '' 'send_change_profile' username=uname %}" class="form-horizontal" role="form">
+            <form method="post" action="{{ send_url }}" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="date-s" class="col-sm-3 control-label">
                         علت</label>

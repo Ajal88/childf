@@ -93,13 +93,16 @@ def send_reply(request, receiver, sender, subject):
 
 def profile_modir(request, username):
     url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
-    return render(request, 'profile-modir.html', {'uname': username, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/modir/change_profile/' + str(username)
+    return render(request, 'profile-modir.html', {'uname': username, 'dash_url': url, 'edit_url': edit_url})
 
 
 def change_profile(request, username):
     form_r = Report()
     url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
-    return render(request, 'change_report.html', {'uname': username, 'form': form_r, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/modir/send_change_profile/' + str(username) + '/'
+    return render(request, 'change_report.html',
+                  {'uname': username, 'form': form_r, 'dash_url': url, 'send_url': edit_url})
 
 
 def send_change_profile(request, username):

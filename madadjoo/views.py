@@ -143,7 +143,8 @@ def hamyar_list(request, username):
 
 def profile_madadjo(request, username):
     url = 'http://127.0.0.1:8000/madadjo/dashboard/' + str(username)
-    return render(request, 'profile-madadjoo.html', {'uname': username, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/madadjoo/change_profile/' + str(username)
+    return render(request, 'profile-madadjoo.html', {'uname': username, 'dash_url': url, 'edit_url': edit_url})
 
 
 def get_notif(request, username):
@@ -213,7 +214,9 @@ def send_reply(request, receiver, sender, subject):
 def change_profile(request, username):
     form_r = Report()
     url = 'http://127.0.0.1:8000/madadjo/dashboard/' + str(username)
-    return render(request, 'change_report.html', {'uname': username, 'form': form_r, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/madadjoo/send_change_profile/' + str(username) + '/'
+    return render(request, 'change_report.html',
+                  {'uname': username, 'form': form_r, 'dash_url': url, 'send_url': edit_url})
 
 
 def send_change_profile(request, username):

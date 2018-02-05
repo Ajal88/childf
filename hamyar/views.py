@@ -144,7 +144,8 @@ def create_message_madadkar(request, username):
 
 def profile_hamyar(request, username):
     url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
-    return render(request, 'profile-hamyar.html', {'uname': username, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/hamyar/send_change_profile/' + str(username)
+    return render(request, 'profile-hamyar.html', {'uname': username, 'dash_url': url, 'edit_url': edit_url})
 
 
 def madadjoo(request, hamyarusername, madadjoousername):
@@ -162,7 +163,9 @@ def madadkar_info(request, madadkarusername, hamyarusername):
 def change_profile(request, username):
     form_change = Report()
     url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
-    return render(request, 'change_report.html', {'uname': username, 'form': form_change, 'dash_url': url})
+    edit_url = 'http://127.0.0.1:8000/hamyar/send_change_profile/' + str(username) + '/'
+    return render(request, 'change_report.html',
+                  {'uname': username, 'form': form_change, 'dash_url': url, 'send_url': edit_url})
 
 
 def send_change_profile(request, username):

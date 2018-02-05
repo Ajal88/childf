@@ -20,5 +20,4 @@ urlpatterns = [
     url(r'send_reply/(?P<receiver>.+)/(?P<sender>.+)/(?P<subject>.+)/$', views.send_reply, name='send_reply'),
     url(r'change_profile/(?P<username>.+)/$', views.change_profile, name='change_profile'),
     url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
-    url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
 ]
