@@ -148,6 +148,7 @@ def get_notif(request, username):
         msg = Message.objects.filter(receiver=krbr)
         return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
 
+
 def inbox(request, username):
     # if request.user.is_authenticated():
     msg = []
