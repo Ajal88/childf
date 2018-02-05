@@ -14,7 +14,10 @@ from .models import Madadjoo, Need, MadadkarChangeRequest
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'madadjo_dash.html', {'uname': username})
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'madadjo_dash.html', {'uname': username, 'msg_list': msg})
 
 
 def madadjooHa(request):
@@ -167,3 +170,23 @@ def send_message(request, sender):
             msg.save()
             url = 'http://127.0.0.1:8000/madadjoo/dashboard/' + str(sender)
             return redirect(url)
+
+
+def send_reply(request, receiver, sender, subject):
+    if request.method == 'POST':
+        form_reply = SendReply(request.POST)
+        if form_reply.is_valid():
+            data = form_reply.cleaned_data
+            txt = data['text']
+        rcvr = receiver
+        sndr = sender
+        sbjct = subject
+        sbjct = 're: ' + str(sbjct)
+        user = User.objects.get(username=rcvr)
+        krbr_rcvr = Karbar.objects.get(user=user)
+        user = User.objects.get(username=sndr)
+        krbr_sndr = Karbar.objects.get(user=user)
+        msg = Message(subject=sbjct, text=txt, receiver=krbr_rcvr, sender=krbr_sndr)
+        msg.save()
+        url = 'http://127.0.0.1:8000/hamyar/inbox/' + str(sender)
+        return redirect(url)

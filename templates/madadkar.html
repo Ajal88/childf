@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="http://127.0.0.1:8000/">خانه</a></li>
-                <li class="active"><a href="madadkar.html">داشبورد</a></li>
+                <li class="active"><a href="{% url 'madadkar_dashboard' username=uname %}">داشبورد</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -48,14 +48,14 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">تنظیمات<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="profile-madadkar.html">پروفایل</a></li>
-                        <li><a href="profile-madadkar.html">تغییر رمز عبور</a></li>
-                        <li><a href="notification.html">اعلان‌ها</a></li>
+                        <li><a href="{% url 'profile_madadkar' username=uname %}">پروفایل</a></li>
+                        <li><a href="{% url 'profile_madadkar' username=uname %}">تغییر رمز عبور</a></li>
+                        <li><a href="{% url 'get_notif' username=uname %}">اعلان‌ها</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="profile-madadkar.html">درخواست تغییر مشخصات کاربری</a></li>
+                        <li><a href="{% url 'profile_madadkar' username=uname %}">درخواست تغییر مشخصات کاربری</a></li>
                     </ul>
                 </li>
-                <li><a href="#">سلام <b>کاربر!</b></a></li>
+                <li><a href="#">سلام <b>{{ uname }}</b></a></li>
                 <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
                 </li>
             </ul>
@@ -70,15 +70,15 @@
                                                                      aria-hidden="true"></span><span
                 class="glyphicon glyphicon-user" aria-hidden="true"></span> ثبت‌نام مددجوی جدید
         </a></li>
-        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope"
+        <li><a class="text-sidebar" href="{% url 'inbox' username=uname %}"><span class="glyphicon glyphicon-envelope"
                                                             aria-hidden="true"></span> صندوق
             پیام‌ها <span class="badge">۸</span></a></li>
-        <li><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell"
+        <li><a class="text-sidebar" href="{% url 'get_notif' username=uname %}"><span class="glyphicon glyphicon-bell"
                                                                    aria-hidden="true"></span> مشاهده‌ی
             اعلان‌ها
             <span class="badge">۷</span></a></li>
         <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expand-ed="false" class="text-sidebar"><span
                     class="glyphicon glyphicon-user" aria-hidden="true"></span> مشاهده‌ی مددجویان <span
                     class="caret"></span></a>
             <ul class="collapse list-unstyled nav" id="homeSubmenu">
@@ -98,10 +98,10 @@
                     class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ارسال پیام <span
                     class="caret"></span></a>
             <ul class="collapse list-unstyled nav" id="homeSubmenu3">
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
+                <li><a href="{% url 'create_message' username=uname %}" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> مددجو</a></li>
-                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span
+                <li><a href="{% url 'create_message' username=uname %}" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-tree-deciduous"
                         aria-hidden="true"></span>
                     همیار</a></li>
@@ -115,29 +115,16 @@
 </div>
 
 <!-- notification -->
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
-    <p><b>خبر جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-primary" href="message.html" role="button">خواندن خبر</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron">
-    <p><b>پیام جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-warning" href="message.html" role="button">رفتن به پیام</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron">
-    <p><b>درخواست جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-info" href="request.html" role="button">رفتن به درخواست</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron ">
-    <p><b>هشدار جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-danger" href="message.html" role="button">مشاهده</a></p>
-</div>
+{% for m in msg_list %}
+    <div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
+        <p><b>پیام جدید</b></p>
+        <p><b>{{ m.subject }}</b></p>
+        <p>{{ m.sender }}</p>
+        <p>{{ m.text }}</p>
+        <small>{{ m.date }}</small>
+        <p><a class="btn btn-primary" href="{% url 'inbox' username=uname %}" role="button">رفتن به پیام‌ها</a></p>
+    </div>
+{% endfor %}
 
 </body>
 

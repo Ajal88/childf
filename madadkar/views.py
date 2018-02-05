@@ -4,11 +4,16 @@ from django.shortcuts import render, redirect
 from madadjoo.models import Madadjoo, MadadkarSupport, Need
 from .forms import MadadkarSignUpForm
 from .models import Madadkar
+from karbar.models import Karbar, Message, User
+from hamyar.forms import SendMessage, SendReply
 
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'madadkar.html', {'uname': username})
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'madadkar.html', {'uname': username, 'msg_list': msg})
 
 
 def madsignup(request):
@@ -49,19 +54,19 @@ def madsignup(request):
 
 def madadjo_list(request, username):
     c = Madadjoo.objects.all()
-    return render(request, 'madadjo_list.html', {'madadjooHa': c , 'uname':username})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
 
 
 def madadjo_list_madadkar(request, username):
     c = Madadjoo.objects.filter(madadkar_field__karbar__user__username=username)
-    return render(request, 'madadjo_list.html', {'madadjooHa': c , 'uname':username})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
 
 
 def madadjo_list_pooshesh(request, username):
     a = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username).values_list(
         'payment__need__madadjoo__karbar__id').all()
     c = Madadjoo.objects.filter(karbar__id__in=a)
-    return render(request, 'madadjo_list.html', {'madadjooHa': c ,'uname':username})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
 
 
 def madadjoo(request, madadkarusername, madadjoousername):
@@ -74,3 +79,61 @@ def madadjoo(request, madadkarusername, madadjoousername):
 def get_mkfinancial_report(request, username):
     pay = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username)
     return render(request, 'madadkar_all_report.html', {'uname': username, 'pay': pay})
+
+
+def send_message(request, sender):
+    if request.method == 'POST':
+        form_msg = SendMessage(request.POST)
+        if form_msg.is_valid():
+            data_msg = form_msg.cleaned_data
+            subjct = data_msg['subject']
+            text = data_msg['text']
+            receiver = data_msg['receiver']
+            user = User.objects.get(username=receiver)
+            krbr_rcvr = Karbar.objects.get(user=user)
+            user = User.objects.get(username=sender)
+            krbr_sndr = Karbar.objects.get(user=user)
+            msg = Message(subject=subjct, text=text, receiver=krbr_rcvr, sender=krbr_sndr)
+            msg.save()
+            url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(sender)
+            return redirect(url)
+
+
+def create_message_madadjo(request, username):
+    form = SendMessage()
+    return render(request, 'send_message.html', {'uname': username, 'form': form})
+
+
+def inbox(request, username):
+    # if request.user.is_authenticated():
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    form_send = SendReply()
+    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username})
+
+
+def send_reply(request, receiver, sender, subject):
+    if request.method == 'POST':
+        form_reply = SendReply(request.POST)
+        if form_reply.is_valid():
+            data = form_reply.cleaned_data
+            txt = data['text']
+        rcvr = receiver
+        sndr = sender
+        sbjct = subject
+        sbjct = 're: ' + str(sbjct)
+        user = User.objects.get(username=rcvr)
+        krbr_rcvr = Karbar.objects.get(user=user)
+        user = User.objects.get(username=sndr)
+        krbr_sndr = Karbar.objects.get(user=user)
+        msg = Message(subject=sbjct, text=txt, receiver=krbr_rcvr, sender=krbr_sndr)
+        msg.save()
+        url = 'http://127.0.0.1:8000/hamyar/inbox/' + str(sender)
+        return redirect(url)
+
+
+def create_message(request, username):
+    form_msg = SendMessage()
+    return render(request, 'send_message.html', {'uname': username, 'form': form_msg})

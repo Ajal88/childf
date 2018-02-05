@@ -105,25 +105,16 @@
 
 
 <!-- notification -->
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
-    <p><b>خبر جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-primary" href="message.html" role="button">خواندن خبر</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron">
-    <p><b>پیام جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-warning" href="message.html" role="button">رفتن به پیام</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron ">
-    <p><b>هشدار جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-danger" href="message.html" role="button">مشاهده کردن</a></p>
-</div>
-
-</body>
+{% for m in msg_list %}
+    <div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
+        <p><b>پیام جدید</b></p>
+        <p><b>{{ m.subject }}</b></p>
+        <p>{{ m.sender }}</p>
+        <p>{{ m.text }}</p>
+        <small>{{ m.date }}</small>
+        <p><a class="btn btn-primary" href="{% url 'inbox' username=uname %}" role="button">رفتن به پیام‌ها</a></p>
+    </div>
+{% endfor %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src='{% static 'js/bootstrap.js' %}'></script>

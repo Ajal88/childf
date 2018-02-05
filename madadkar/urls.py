@@ -14,4 +14,7 @@ urlpatterns = [
         name='madadjo_list_pooshesh'),
     url(r'dashboard/(?P<username>.+)/$', views.show_dashboard, name='madadkar_dashboard'),
     url(r'get_mkfinancial_report/(?P<username>.+)/$', views.get_mkfinancial_report, name='get_mkfinancial_report'),
+    url(r'send_message/(?P<sender>.+)/$', views.send_message, name='send_message'),
+    url(r'create_message/(?P<username>.+)/$', views.create_message, name='create_message_madadkar'),
+    url(r'send_reply/(?P<receiver>.+)/(?P<sender>.+)/(?P<subject>.+)/$', views.send_reply, name='send_reply'),
 ]

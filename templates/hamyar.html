@@ -56,7 +56,7 @@
                         <li><a href="{% url 'profile_hamyar' username=uname %}">درخواست تغییر مشخصات کاربری</a></li>
                     </ul>
                 </li>
-                <li><a href="">سلام <b>کاربر!</b></a></li>
+                <li><a href="">سلام <b>{{ uname }}</b></a></li>
                 <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
                 </li>
             </ul>
