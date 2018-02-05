@@ -66,10 +66,10 @@
 <!-- sidebar -->
 <div class="col-xs-12 col-md-2 sidebar">
     <ul class="nav">
-        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope"
+        <li><a class="text-sidebar" href="{% url 'inbox' username=uname %}"><span class="glyphicon glyphicon-envelope"
                                                             aria-hidden="true"></span> صندوق
             پیام‌ها <span class="badge">۸</span></a></li>
-        <li><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell"
+        <li><a class="text-sidebar" href="{% url '' %}"><span class="glyphicon glyphicon-bell"
                                                                    aria-hidden="true"></span> مشاهده‌ی
             اعلان‌ها
             <span class="badge">۷</span></a></li>

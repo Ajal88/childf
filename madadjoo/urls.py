@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'report_hamyar/(?P<username>.+)/$', views.report_hamyar, name='report_hamyar'),
     url(r'profile_madadjo/(?P<username>.+)/$', views.profile_madadjo, name='profile_madadjo'),
     url(r'get_notif/(?P<username>.+)/$', views.get_notif, name='get_notif'),
+    url(r'inbox/(?P<username>.+)/$', views.inbox, name='inbox'),
 ]

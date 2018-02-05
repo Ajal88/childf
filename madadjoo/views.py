@@ -3,8 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from hamyar.models import Hamyar
-from karbar.models import Karbar
+from karbar.models import Karbar, Message
 from madadkar.models import Madadkar
+from hamyar.forms import SendReply
 from .filters import MadadjooFilter
 from .filters import NeedFilter
 from .forms import *
@@ -133,3 +134,13 @@ def profile_madadjo(request, username):
 
 def get_notif(request, username):
     return render(request, 'notification.html', {'uname': username})
+
+
+def inbox(request, username):
+    # if request.user.is_authenticated():
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    form_send = SendReply()
+    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username})
