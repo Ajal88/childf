@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from .forms import MadadkarSignUpForm
 from .models import Madadkar
-from madadjoo.models import Madadjoo
+from madadjoo.models import Madadjoo,MadadkarSupport
 
 
 @login_required
@@ -52,4 +52,10 @@ def madadjo_list(request,username):
 
 def madadjo_list_madadkar(request,username):
     c = Madadjoo.objects.filter(madadkar_field__karbar__user__username=username)
+    return render(request, 'madadjo_list.html', {'madadjooHa': c})
+
+
+def madadjo_list_pooshesh(request,username):
+    a = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username).values_list('payment__need__madadjoo__karbar__id').all()
+    c = Madadjoo.objects.filter(karbar__id__in = a)
     return render(request, 'madadjo_list.html', {'madadjooHa': c})
