@@ -163,3 +163,7 @@ def send_change_profile(request, username):
             report_hy.save()
             url = 'http://127.0.0.1:8000/madadkar/dashboard/' + str(username)
             return redirect(url)
+
+
+def get_notif(request, username):
+    pass
