@@ -48,11 +48,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">تنظیمات<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="profile-madadjoo.html">پروفایل</a></li>
-                        <li><a href="profile-madadjoo.html">تغییر رمز عبور</a></li>
-                        <li><a href="notification.html">اعلان‌ها</a></li>
+                        <li><a href="{% url 'profile_madadjo' username=uname %}">پروفایل</a></li>
+                        <li><a href="{% url 'profile_madadjo' username=uname %}">تغییر رمز عبور</a></li>
+                        <li><a href="{% url 'get_notif' username=uname %}">اعلان‌ها</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="profile-madadjoo.html">درخواست تغییر مشخصات کاربری</a></li>
+                        <li><a href="{% url 'profile_madadjo' username=uname %}">درخواست تغییر مشخصات کاربری</a></li>
                     </ul>
                 </li>
                 <li><a href="#">سلام <b>کاربر!</b></a></li>

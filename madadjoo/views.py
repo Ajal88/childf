@@ -125,3 +125,11 @@ def madadkar_info(request, username):
 def hamyar_list(request, username):
     c = Hamyar.objects.all()
     return render(request, 'hamyar_list.html', {'hamyar_list': c})
+
+
+def profile_madadjo(request, username):
+    return render(request, 'profile-madadjoo.html', {'uname': username})
+
+
+def get_notif(request, username):
+    return render(request, 'notification.html', {'uname': username})

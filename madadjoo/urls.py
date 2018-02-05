@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^info/(?P<username>.+)/', views.madadjoo, name='index'),
     url(r'get_need_report/(?P<username>\D+)/$', views.needSearch, name='need_search'),
     url(r'report_hamyar/(?P<username>.+)/$', views.report_hamyar, name='report_hamyar'),
+    url(r'profile_madadjo/(?P<username>.+)/$', views.profile_madadjo, name='profile_madadjo'),
+    url(r'get_notif/(?P<username>.+)/$', views.get_notif, name='get_notif'),
 ]
