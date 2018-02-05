@@ -137,3 +137,7 @@ def send_reply(request, receiver, sender, subject):
 def create_message(request, username):
     form_msg = SendMessage()
     return render(request, 'send_message.html', {'uname': username, 'form': form_msg})
+
+
+def profile_madadkar(request, username):
+    pass
