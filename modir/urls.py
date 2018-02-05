@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'create_message/(?P<username>.+)/$', views.create_message, name='create_message'),
     url(r'send_message/(?P<sender>.+)/$', views.send_message, name='send_message'),
     url(r'send_reply/(?P<receiver>.+)/(?P<sender>.+)/(?P<subject>.+)/$', views.send_reply, name='send_reply'),
+    url(r'profile_modir/(?P<username>.+)/$', views.profile_modir, name='profile_modir'),
     url(r'change_profile/(?P<username>.+)/$', views.change_profile, name='change_profile'),
     url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
 ]

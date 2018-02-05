@@ -41,8 +41,7 @@ def get_notif(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'notification.html', {'msg_list': msg , 'uname': username})
-
+    return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
 
 
 def create_message(request, username):
@@ -86,6 +85,10 @@ def send_reply(request, receiver, sender, subject):
         msg.save()
         url = 'http://127.0.0.1:8000/modir/inbox/' + str(sender)
         return redirect(url)
+
+
+def profile_modir(request, username):
+    return render(request, 'profile-modir.html', {'uname': username})
 
 
 def change_profile(request, username):

@@ -141,7 +141,7 @@ def create_message(request, username):
 
 
 def profile_madadkar(request, username):
-    pass
+    return render(request, 'profile-madadkar.html', {'uname': username})
 
 
 def change_profile(request, username):
