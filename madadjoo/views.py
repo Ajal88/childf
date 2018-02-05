@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from hamyar.models import Hamyar
 from karbar.models import Karbar, Message
 from madadkar.models import Madadkar
-from hamyar.forms import SendReply
+from hamyar.forms import SendReply, SendMessage
 from .filters import MadadjooFilter
 from .filters import NeedFilter
 from .forms import *
@@ -144,3 +144,26 @@ def inbox(request, username):
     msg = Message.objects.filter(receiver=krbr)
     form_send = SendReply()
     return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username})
+
+
+def create_message(request, username):
+    form_msg = SendMessage()
+    return render(request, 'send_message.html', {'uname': username, 'form': form_msg})
+
+
+def send_message(request, sender):
+    if request.method == 'POST':
+        form_msg = SendMessage(request.POST)
+        if form_msg.is_valid():
+            data_msg = form_msg.cleaned_data
+            subjct = data_msg['subject']
+            text = data_msg['text']
+            receiver = data_msg['receiver']
+            user = User.objects.get(username=receiver)
+            krbr_rcvr = Karbar.objects.get(user=user)
+            user = User.objects.get(username=sender)
+            krbr_sndr = Karbar.objects.get(user=user)
+            msg = Message(subject=subjct, text=text, receiver=krbr_rcvr, sender=krbr_sndr)
+            msg.save()
+            url = 'http://127.0.0.1:8000/madadjoo/dashboard/' + str(sender)
+            return redirect(url)

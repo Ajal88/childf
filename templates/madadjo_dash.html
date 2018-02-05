@@ -69,7 +69,7 @@
         <li><a class="text-sidebar" href="{% url 'inbox' username=uname %}"><span class="glyphicon glyphicon-envelope"
                                                             aria-hidden="true"></span> صندوق
             پیام‌ها <span class="badge">۸</span></a></li>
-        <li><a class="text-sidebar" href="{% url '' %}"><span class="glyphicon glyphicon-bell"
+        <li><a class="text-sidebar" href="{% url 'get_notif' username=uname %}"><span class="glyphicon glyphicon-bell"
                                                                    aria-hidden="true"></span> مشاهده‌ی
             اعلان‌ها
             <span class="badge">۷</span></a></li>
@@ -86,10 +86,10 @@
                     class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ارسال پیام <span
                     class="caret"></span></a>
             <ul class="collapse list-unstyled nav" id="homeSubmenu3">
-                <li><a href="madadkar_info.html" class="text-sidebar text-submenu"><span
+                <li><a href="{% url 'create_message' username=uname %}" class="text-sidebar text-submenu"><span
                         class="glyphicon glyphicon-grain"
                         aria-hidden="true"></span> مددکار</a></li>
-                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
+                <li><a href="{% url 'create_message' username=uname %}" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
                                                                                        aria-hidden="true"></span>
                     همیار</a></li>
             </ul>

@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'profile_madadjo/(?P<username>.+)/$', views.profile_madadjo, name='profile_madadjo'),
     url(r'get_notif/(?P<username>.+)/$', views.get_notif, name='get_notif'),
     url(r'inbox/(?P<username>.+)/$', views.inbox, name='inbox'),
+    url(r'create_message/(?P<username>.+)/$', views.create_message, name='create_message'),
+    url(r'send_message/(?P<sender>.+)/$', views.send_message, name='send_message'),
 ]
