@@ -11,12 +11,14 @@ def show_dashboard(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'modir.html', {'uname': username, 'msg_list': msg})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'hamyar.html', {'uname': username, 'msg_list': msg, 'dash_url': url})
 
 
 def show_message_to_all(request, username):
     form = SendToAll()
-    return render(request, 'modir_send_to_all.html', {'uname': username, 'form': form})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'modir_send_to_all.html', {'uname': username, 'form': form, 'dash_url': url})
 
 
 def send_message_to_all(request, username):
@@ -41,12 +43,14 @@ def get_notif(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'notification.html', {'msg_list': msg, 'uname': username, 'dash_url': url})
 
 
 def create_message(request, username):
     form = SendMessage()
-    return render(request, 'send_message.html', {'uname': username, 'form': form})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'send_message.html', {'uname': username, 'form': form, 'dash_url': url})
 
 
 def send_message(request, sender):
@@ -88,12 +92,14 @@ def send_reply(request, receiver, sender, subject):
 
 
 def profile_modir(request, username):
-    return render(request, 'profile-modir.html', {'uname': username})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'profile-modir.html', {'uname': username, 'dash_url': url})
 
 
 def change_profile(request, username):
     form_r = Report()
-    return render(request, 'change_report.html', {'uname': username, 'form': form_r})
+    url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
+    return render(request, 'change_report.html', {'uname': username, 'form': form_r, 'dash_url': url})
 
 
 def send_change_profile(request, username):
