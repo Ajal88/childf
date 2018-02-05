@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', karbar.views.home, name='home'),
     url(r'^company_info/', karbar.views.company_inf, name='cmp_info'),
+    url(r'^company_inf/activity4', karbar.views.company_act4, name='cmp_info4'),
+    url(r'^company_inf/activity5', karbar.views.company_act5, name='cmp_info5'),
     url(r'^auth/', include('karbar.urls')),
     url(r'^search/', madadjoo.views.search, name='search'),
     url(r'^madadjoo/', include('madadjoo.urls')),

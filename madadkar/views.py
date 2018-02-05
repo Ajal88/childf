@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from madadjoo.models import Madadjoo, MadadkarSupport, Need
 from .forms import MadadkarSignUpForm
 from .models import Madadkar
-from madadjoo.models import Madadjoo,MadadkarSupport,Need
 
 
 @login_required
 def show_dashboard(request, username):
-    return render(request, 'madadkar.html')
+    return render(request, 'madadkar.html', {'uname': username})
 
 
 def madsignup(request):
@@ -46,22 +46,31 @@ def madsignup(request):
         form = MadadkarSignUpForm()
     return render(request, 'signup_madadkar.html', {'form': form})
 
-def madadjo_list(request,username):
+
+def madadjo_list(request, username):
     c = Madadjoo.objects.all()
     return render(request, 'madadjo_list.html', {'madadjooHa': c})
 
-def madadjo_list_madadkar(request,username):
+
+def madadjo_list_madadkar(request, username):
     c = Madadjoo.objects.filter(madadkar_field__karbar__user__username=username)
     return render(request, 'madadjo_list.html', {'madadjooHa': c})
 
 
-def madadjo_list_pooshesh(request,username):
-    a = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username).values_list('payment__need__madadjoo__karbar__id').all()
-    c = Madadjoo.objects.filter(karbar__id__in = a)
+def madadjo_list_pooshesh(request, username):
+    a = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username).values_list(
+        'payment__need__madadjoo__karbar__id').all()
+    c = Madadjoo.objects.filter(karbar__id__in=a)
     return render(request, 'madadjo_list.html', {'madadjooHa': c})
 
-def madadjoo(request, madadkarusername,madadjoousername):
+
+def madadjoo(request, madadkarusername, madadjoousername):
     c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
 
-    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n ,'madadkar':madadkarusername})
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'madadkar': madadkarusername})
+
+
+def get_mkfinancial_report(request, username):
+    pay = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username)
+    return render(request, 'madadkar_all_report.html', {'uname': username, 'pay': pay})

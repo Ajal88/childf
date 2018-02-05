@@ -16,7 +16,7 @@ def inbox(request, username):
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
     form_send = SendReply()
-    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send})
+    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username})
 
 
 def send_reply(request, receiver, sender, subject):
@@ -102,7 +102,7 @@ def get_madadjo_list(request, username):
 
 def get_financial_report(request, username):
     pay = Support.objects.filter(hamyar__karbar__user__username=username)
-    return render(request, 'all_report.html', {'uname': username, 'pay': pay})
+    return render(request, 'hamyar_all_report.html', {'uname': username, 'pay': pay})
 
 
 def get_madadjo_list_all(request, username):

@@ -109,12 +109,10 @@
                     همیار</a></li>
             </ul>
         </li>
-        <li><a class="text-sidebar" href="f_report.html"><span class="glyphicon glyphicon-save-file"
-                                                               aria-hidden="true"></span>
+        <li><a class="text-sidebar" href="{% url 'get_financial_report' username=uname %}"><span
+                class="glyphicon glyphicon-save-file"
+                aria-hidden="true"></span>
             دریافت گزارش مالی</a></li>
-        <li><a class="text-sidebar" href="{% url 'get_financial_report' username=uname %}"><span class="glyphicon glyphicon-save-file"
-                                                                            aria-hidden="true"></span>
-            دریافت رسید</a></li>
     </ul>
 </div>
 
@@ -128,7 +126,8 @@
         <p>{{ msg.text }}</p>
         <small>{{ msg.date }}</small>
         <h4><b>پاسخ پیام</b></h4>
-        <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="POST" role="form">
+        <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="POST"
+              role="form">
             {{ form.text }}
             <br>
             <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>

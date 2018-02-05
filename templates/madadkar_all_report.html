@@ -16,7 +16,7 @@
     <script src='{% static 'js/bootstrap.js' %}'></script>
     <script src='{% static 'js/butn.js' %}'></script>
     <link rel="icon" href='{% static 'img/logo.png' %}'>
-    <title>دریافت گزارش مالی</title>
+    <title>دریافت رسید</title>
 </head>
 <body>
 
@@ -109,12 +109,10 @@
                     همیار</a></li>
             </ul>
         </li>
-        <li><a class="text-sidebar green_active" href="f_report.html"><span class="glyphicon glyphicon-save-file"
-                                                                            aria-hidden="true"></span>
+        <li><a class="text-sidebar" href="{% url 'get_financial_report' username=uname %}"><span
+                class="glyphicon glyphicon-save-file"
+                aria-hidden="true"></span>
             دریافت گزارش مالی</a></li>
-        <li><a class="text-sidebar" href="{% url 'get_financial_report' username=uname %}"><span class="glyphicon glyphicon-save-file"
-                                                                            aria-hidden="true"></span>
-            دریافت رسید</a></li>
     </ul>
 </div>
 
@@ -125,31 +123,30 @@
             <span class="glyphicon glyphicon-lock"></span> دریافت گزارش مالی
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="date-s" class="col-sm-3 control-label">
-                        از تاریخ</label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" id="date-s" placeholder="تاریخ شروع گزارش"
-                               required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="date-e" class="col-sm-3 control-label">
-                        تا تاریخ</label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" id="date-e" placeholder="تاریخ پایان گزارش"
-                               required>
-                    </div>
-                </div>
-                <div class="form-group last">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-success btn-sm">
-                            دریافت گزارش
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>نام نیاز</th>
+                    <th>نوع نیاز</th>
+                    <th>مقدار نیاز</th>
+                    <th>مقدار پرداختی</th>
+                    <th>تاریخ</th>
+                    <th>مددجو</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in pay %}
+                    <tr>
+                        <td>{{ item.payment.need.name }}</td>
+                        <td>{{ item.payment.need.get_type_display }}</td>
+                        <td>{{ item.payment.need.cost }}</td>
+                        <td>{{ item.payment.amount }}</td>
+                        <td>{{ item.payment.date }}</td>
+                        <td>{{ item.payment.need.madadjoo.karbar.user.first_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

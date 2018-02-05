@@ -52,4 +52,10 @@ def home(request):
 def company_inf(request):
     return render(request, 'company_info.html')
 
+def company_act4(request):
+    return render(request, 'company-activity4.html')
+
+def company_act5(request):
+    return render(request, 'company-activity5.html')
+
 # TODO password reset - mina

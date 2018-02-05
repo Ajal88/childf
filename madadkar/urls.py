@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'dashboard/(?P<username>.+)/madadjo_list_poshesh/$', views.madadjo_list_pooshesh,
         name='madadjo_list_pooshesh'),
     url(r'dashboard/(?P<username>.+)/$', views.show_dashboard, name='madadkar_dashboard'),
+    url(r'get_mkfinancial_report/(?P<username>\D+)/$', views.get_mkfinancial_report, name='get_mkfinancial_report'),
 ]
