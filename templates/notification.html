@@ -62,73 +62,26 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<!-- sidebar -->
-<div class="col-xs-12 col-md-2 sidebar">
-    <ul class="nav">
-        <li><a class="text-sidebar" href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span
-                class="glyphicon glyphicon-user" aria-hidden="true"></span> ثبت‌نام مددجوی جدید
-        </a></li>
-        <li><a class="text-sidebar" href="inbox.html"><span class="glyphicon glyphicon-envelope"
-                                                            aria-hidden="true"></span> صندوق
-            پیام‌ها <span class="badge">۸</span></a></li>
-        <li class="green_active"><a class="text-sidebar" href="notification.html"><span class="glyphicon glyphicon-bell"
-                                                                                        aria-hidden="true"></span>
-            مشاهده‌ی
-            اعلان‌ها
-            <span class="badge">۷</span></a></li>
-        <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
-                    class="glyphicon glyphicon-user" aria-hidden="true"></span> مشاهده‌ی مددجویان <span
-                    class="caret"></span></a>
-            <ul class="collapse list-unstyled nav" id="homeSubmenu">
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-grain"
-                        aria-hidden="true"></span> همه‌ی مددجویان</a></li>
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-star-empty"
-                        aria-hidden="true"></span> مددجویان تحت‌مددکاری</a></li>
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span class="glyphicon glyphicon-leaf"
-                                                                                        aria-hidden="true"></span>
-                    مددجویان تحت‌پوشش</a></li>
-            </ul>
-        </li>
-        <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
-                    class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ارسال پیام <span
-                    class="caret"></span></a>
-            <ul class="collapse list-unstyled nav" id="homeSubmenu3">
-                <li><a href="madadjo_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-grain"
-                        aria-hidden="true"></span> مددجو</a></li>
-                <li><a href="hamyar_list.html" class="text-sidebar text-submenu"><span
-                        class="glyphicon glyphicon-tree-deciduous"
-                        aria-hidden="true"></span>
-                    همیار</a></li>
-            </ul>
-        </li>
-        <li><a class="text-sidebar" href="madadkar_all_report.html"><span class="glyphicon glyphicon-save-file"
-                                                                          aria-hidden="true"></span>
-            دریافت گزارش مالی</a></li>
-    </ul>
-</div>
+{% for msg in msg_list %}
+    <div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
+        <h4><b>از :</b></h4>
+        <h4><b>{{ msg.sender }}</b></h4>
+        <h4>موضوع :</h4>
+        <h4>{{ msg.subject }}</h4>
+        <p>متن پیام :</p>
+        <p>{{ msg.text }}</p>
+        <small>{{ msg.date }}</small>
+     <!--   <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="POST"
+              role="form">
+            {{ form.text }}
+            <br>
+            <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>
+        </form> -->
+    </div>
+{% empty %}
+    <li>متاسفانه هیچ اعلانی موجود نیست</li>
+{% endfor %}
 
-<!-- notification -->
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
-    <h4><b>درخواست جدید</b></h4>
-    <h4>موضوع</h4>
-    <p>متن خبر ...</p>
-    <h4><b>پاسخ پیام</b></h4>
-    <textarea class="form-control" rows="3"></textarea>
-    <br>
-    <p><a class="btn btn-success" href="#" role="button">قبول کردن</a><a class="btn btn-danger" href="#" role="button">رد
-        کردن</a></p>
-</div>
-
-<div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron ">
-    <p><b>هشدار جدید</b></p>
-    <p>...</p>
-    <p><a class="btn btn-danger" href="message.html" role="button">مشاهده</a></p>
-</div>
 
 
 </body>

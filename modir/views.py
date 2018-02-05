@@ -37,7 +37,12 @@ def send_message_to_all(request, username):
 
 
 def get_notif(request, username):
-    pass
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'notification.html', {'msg_list': msg , 'uname': username})
+
 
 
 def create_message(request, username):

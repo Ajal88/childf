@@ -141,8 +141,12 @@ def profile_madadjo(request, username):
 
 
 def get_notif(request, username):
-    return render(request, 'notification.html', {'uname': username})
-
+    def get_notif(request, username):
+        msg = []
+        user = User.objects.get(username=username)
+        krbr = Karbar.objects.get(user=user)
+        msg = Message.objects.filter(receiver=krbr)
+        return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
 
 def inbox(request, username):
     # if request.user.is_authenticated():

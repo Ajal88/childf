@@ -70,13 +70,13 @@ class MadadjooSignUpForm(UserCreationForm):
             User.objects.get(username=data)
             return data
         except User.DoesNotExist:
-            raise forms.ValidationError('invalid register user')
+            raise forms.ValidationError('نام کاربری ثبت‌نام‌کننده‌ی اشتباه')
 
     def clean_NationalCode(self):
         data = self.cleaned_data.get('NationalCode')
         try:
             Madadjoo.objects.get(NationalCode=data)
-            raise forms.ValidationError('Duplicate National Code')
+            raise forms.ValidationError('کد ملی تکراری')
         except Madadjoo.DoesNotExist:
             return data
 

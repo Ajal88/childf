@@ -16,7 +16,6 @@ def mylogin(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            print(username)
             if user is not None:
                 login(request, user)
                 karbar = Karbar.objects.get(user=user)
@@ -37,8 +36,12 @@ def mylogin(request):
                     user_url = '/modir/dashboard/' + username
                     return redirect(user_url)
             else:
-                messages.error(request, 'username or password not correct')
+                print('in user else')
+                form.add_error('username', error={'نام کاربری اشتباه'})
+                # messages.error(request, 'username or password not correct')
                 return redirect('login')
+        else:
+            form.add_error('password', error={'رمز عبور اشتباه'})
     else:
         form = LoginForm()
 
@@ -52,8 +55,10 @@ def home(request):
 def company_inf(request):
     return render(request, 'company_info.html')
 
+
 def company_act4(request):
     return render(request, 'company-activity4.html')
+
 
 def company_act5(request):
     return render(request, 'company-activity5.html')

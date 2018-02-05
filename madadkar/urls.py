@@ -3,6 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'notification/(?P<username>.+)/$', views.get_notif, name='get_notif'),
     url(r'signup/', views.madsignup, name='signup'),
     url(r'dashboard/(?P<madadkarusername>.+)/info/(?P<madadjoousername>.+)/$', views.madadjoo,
         name='madadjo'),
