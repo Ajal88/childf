@@ -2,13 +2,13 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from django.shortcuts import render, redirect
 
+from hamyar.models import Hamyar
 from karbar.models import Karbar
+from madadkar.models import Madadkar
+from .filters import MadadjooFilter
+from .filters import NeedFilter
 from .forms import *
 from .models import Madadjoo, Need, MadadkarChangeRequest
-from .filters import MadadjooFilter, NeedFilter
-from .filters import MadadjooFilter
-from hamyar.models import Hamyar
-from madadkar.models import Madadkar
 
 
 @login_required
@@ -34,9 +34,11 @@ def madadjoo(request, username):
 
 
 def needSearch(request, username):
-    need_list = Need.objects.filter(madadjoo__karbar__user__username=username)
+    # need_list = Need.objects.filter(madadjoo__karbar__user__username=username)
+    need_list = Need.objects.all()
     need_filter = NeedFilter(request.GET, queryset=need_list)
     return render(request, 'madadjoo_need.html', {'filter': need_filter, 'uname': username})
+
 
 def search(request):
     madadjoo_list = Madadjoo.objects.all()

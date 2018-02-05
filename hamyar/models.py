@@ -14,8 +14,9 @@ from modir.models import Modir
 class Hamyar(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
-    phoneNumber = models.CharField('شماره تلفن',max_length=12, null=True, blank=True)
+    phoneNumber = models.CharField('شماره تلفن', max_length=12, null=True, blank=True)
     payed = models.PositiveIntegerField(default=0)
+
     class Meta:
         verbose_name = 'همیار'
         verbose_name_plural = 'همیاران'
@@ -32,6 +33,10 @@ class Hamyar(models.Model):
 class Support(models.Model):
     hamyar = models.ForeignKey(Hamyar, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'حمایت همیار'
+        verbose_name_plural = 'حمایت‌های همیاران'
 
 
 class MeetTheMadadjooRequest(Request):

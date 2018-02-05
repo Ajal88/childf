@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Hamyar
+from .models import Support
 
 
 class HamyarAdmin(admin.ModelAdmin):
@@ -10,3 +11,4 @@ class HamyarAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Hamyar, HamyarAdmin)
+admin.site.register(Support)

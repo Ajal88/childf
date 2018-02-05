@@ -103,9 +103,8 @@ def get_madadjo_list(request, username):
 
 
 def get_financial_report(request, username):
-    hamyar = Hamyar.objects.get(karbar__user__username=username)
-    pay = Support.objects.filter(hamyar=hamyar).payment
-    return render(request, 'madadjo.html', {'pay': pay})
+    pay = Support.objects.filter(hamyar__karbar__user__username=username)
+    return render(request, 'all_report.html', {'uname': username, 'pay': pay})
 
 
 def get_madadjo_list_all(request, username):

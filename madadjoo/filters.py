@@ -10,6 +10,9 @@ class MadadjooFilter(django_filters.FilterSet):
 
 
 class NeedFilter(django_filters.FilterSet):
+    madadjoo__karbar__user__username = django_filters.CharFilter()
+    # field_name='madadjoo', lookup_expr='username'
+
     class Meta:
         model = Need
-        fields = ['name', 'type', 'resolved']
+        fields = ['madadjoo', 'name', 'type', 'resolved']
