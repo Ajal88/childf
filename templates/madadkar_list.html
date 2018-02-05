@@ -124,17 +124,19 @@
 
 <!-- list -->
 <div class="row col-xs-12 col-md-9 col-sm-10 col-md-offset-2">
+        {% for madadkar in madadkarHa %}
     <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="thumbnail small-card">
             <img src='{% static 'img/logo.jpg' %}' alt="عکس پروفایل">
             <div class="caption">
-                <h3>قلی</h3>
+                <h3>{{madadkar.karbar.user.first_name }}  {{madadkar.karbar.user.last_name }}</h3>
                 <p>مددکار توانمند و سخت‌کوش</p>
-                <p>درجه ۲</p>
-                <p><a href="madadkar_info.html" class="btn btn-default btn-sm" role="button">مشاهده‌ی اطلاعات</a>
+               <!-- <p>درجه ۲</p>-->
+                <p><a href="info/{{madadkar.karbar.user.username}}/" class="btn btn-default btn-sm" role="button">مشاهده‌ی اطلاعات</a>
             </div>
         </div>
     </div>
+     {% endfor %}
 </div>
 
 </body>

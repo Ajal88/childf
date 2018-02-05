@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from hamyar.forms import *
 from karbar.models import *
 from .models import *
+from madadjoo.models import Need
 
 
 # @login_required
@@ -96,21 +97,26 @@ def get_notif(request, username):
     pass
 
 
-def get_madadjo_list(request, username):
-    pass
-
-
 def get_financial_report(request, username):
     pay = Support.objects.filter(hamyar__karbar__user__username=username)
     return render(request, 'hamyar_all_report.html', {'uname': username, 'pay': pay})
 
 
 def get_madadjo_list_all(request, username):
-    pass
+    c = Madadjoo.objects.all()
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
+
+
+def get_madadjo_list(request, username):
+    a = Support.objects.filter(hamyar__karbar__user__username=username).values_list(
+        'payment__need__madadjoo__karbar__id').all()
+    c = Madadjoo.objects.filter(karbar__id__in=a)
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
 
 
 def get_madadkar_list_all(request, username):
-    pass
+    c = Madadkar.objects.all()
+    return render(request, 'madadkar_list.html', {'madadkarHa': c, 'uname': username})
 
 
 def get_madadkar_list(request, username):
@@ -129,3 +135,16 @@ def create_message_madadkar(request, username):
 
 def profile_hamyar(request, username):
     return render(request, 'profile-hamyar.html', {'uname': username})
+
+
+def madadjoo(request, hamyarusername, madadjoousername):
+    c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
+
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'hamyar': hamyarusername})
+
+
+def madadkar_info(request, madadkarusername, hamyarusername):
+    b = Madadkar.objects.get(karbar__user__username=madadkarusername)
+    c = Madadjoo.objects.filter(madadkar_field=b)
+    return render(request, 'madadkar_info.html', {'madadkar': b, 'madadjooHA': c, 'uname': hamyarusername})

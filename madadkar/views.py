@@ -49,19 +49,19 @@ def madsignup(request):
 
 def madadjo_list(request, username):
     c = Madadjoo.objects.all()
-    return render(request, 'madadjo_list.html', {'madadjooHa': c})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c , 'uname':username})
 
 
 def madadjo_list_madadkar(request, username):
     c = Madadjoo.objects.filter(madadkar_field__karbar__user__username=username)
-    return render(request, 'madadjo_list.html', {'madadjooHa': c})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c , 'uname':username})
 
 
 def madadjo_list_pooshesh(request, username):
     a = MadadkarSupport.objects.filter(madadkar__karbar__user__username=username).values_list(
         'payment__need__madadjoo__karbar__id').all()
     c = Madadjoo.objects.filter(karbar__id__in=a)
-    return render(request, 'madadjo_list.html', {'madadjooHa': c})
+    return render(request, 'madadjo_list.html', {'madadjooHa': c ,'uname':username})
 
 
 def madadjoo(request, madadkarusername, madadjoousername):

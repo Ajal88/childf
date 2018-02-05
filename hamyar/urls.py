@@ -3,6 +3,11 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+
+    url(r'get_madadjo_list_all/(?P<hamyarusername>.+)/info/(?P<madadjoousername>.+)/$', views.madadjoo,
+        name='madadjo'),
+    url(r'get_madadkar_list_all/(?P<hamyarusername>.+)/info/(?P<madadkarusername>.+)/$', views.madadkar_info,
+        name='madadkar'),
     url(r'inbox/(?P<username>.+)/$', views.inbox, name='inbox'),
     url(r'send_reply/(?P<receiver>.+)/(?P<sender>.+)/(?P<subject>.+)/$', views.send_reply, name='send_reply'),
     url(r'dashboard/(?P<username>.+)/$', views.show_dashboard, name='hamyar_dashboard'),
