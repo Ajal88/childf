@@ -198,7 +198,7 @@ def send_reply(request, receiver, sender, subject):
         krbr_sndr = Karbar.objects.get(user=user)
         msg = Message(subject=sbjct, text=txt, receiver=krbr_rcvr, sender=krbr_sndr)
         msg.save()
-        url = 'http://127.0.0.1:8000/hamyar/inbox/' + str(sender)
+        url = 'http://127.0.0.1:8000/madadjoo/inbox/' + str(sender)
         return redirect(url)
 
 
