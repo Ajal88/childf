@@ -147,7 +147,6 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>نام مددجو</th>
                     <th>نام نیاز</th>
                     <th>نوع نیاز</th>
                     <th>هزینه</th>
@@ -157,7 +156,6 @@
                 <tbody>
                 {% for need in filter.qs %}
                     <tr>
-                        <td>{{ need.madadjoo }}</td>
                         <td>{{ need.name }}</td>
                         <td>{{ need.get_type_display }}</td>
                         <td>{{ need.cost }}</td>
