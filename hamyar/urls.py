@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'get_madadkar_list/(?P<username>.+)/$', views.get_madadkar_list, name='get_madadkar_list'),
     url(r'get_financial_report/(?P<username>.+)/$', views.get_financial_report, name='get_financial_report'),
     url(r'profile_hamyar/(?P<username>.+)/$', views.profile_hamyar, name='profile_hamyar'),
+    url(r'change_profile/(?P<username>.+)/$', views.change_profile, name='change_profile'),
+    url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
 ]

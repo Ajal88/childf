@@ -102,7 +102,12 @@ def madsignup(request):
     return render(request, 'signup_madadjo.html', {'form': form})
 
 
-def report_hamyar(request, username):
+def report_madadkar(request, username):
+    form_rm = Report()
+    return render(request, 'madadkar_report.html', {'uname': username, 'form': form_rm})
+
+
+def send_report_madadkar(request, username):
     if request.method == 'POST':
         report_form = Report(request.POST)
         if report_form.is_valid():
@@ -190,3 +195,24 @@ def send_reply(request, receiver, sender, subject):
         msg.save()
         url = 'http://127.0.0.1:8000/hamyar/inbox/' + str(sender)
         return redirect(url)
+
+
+def change_profile(request, username):
+    form_r = Report()
+    return render(request, 'change_report.html', {'uname': username, 'form': form_r})
+
+
+def send_change_profile(request, username):
+    if request.method == 'POST':
+        report_form = Report(request.POST)
+        if report_form.is_valid():
+            data = report_form.cleaned_data
+            r_txt = data['report_text']
+            mj = User.objects.get(username=username)
+            krbr_mj = Karbar.objects.get(user=mj)
+            krbr_mr = Karbar.objects.get(us_type=3)
+            report_hy = Message(sender=krbr_mj, receiver=krbr_mr, text=r_txt,
+                                subject='درخواست تغییر مشخصات')
+            report_hy.save()
+            url = 'http://127.0.0.1:8000/madadjoo/dashboard/' + str(username)
+            return redirect(url)

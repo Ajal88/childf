@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from hamyar.forms import *
 from karbar.models import *
 from .models import *
-from madadjoo.models import Need
+from madadjoo.models import Need, MadadkarChangeRequest
+from madadjoo.forms import Report
 
 
 # @login_required
@@ -148,3 +149,24 @@ def madadkar_info(request, madadkarusername, hamyarusername):
     b = Madadkar.objects.get(karbar__user__username=madadkarusername)
     c = Madadjoo.objects.filter(madadkar_field=b)
     return render(request, 'madadkar_info.html', {'madadkar': b, 'madadjooHA': c, 'uname': hamyarusername})
+
+
+def change_profile(request, username):
+    form_change = Report()
+    return render(request, 'change_report.html', {'uname': username, 'form': form_change})
+
+
+def send_change_profile(request, username):
+    if request.method == 'POST':
+        report_form = Report(request.POST)
+        if report_form.is_valid():
+            data = report_form.cleaned_data
+            r_txt = data['report_text']
+            mj = User.objects.get(username=username)
+            krbr_mj = Karbar.objects.get(user=mj)
+            krbr_mr = Karbar.objects.get(us_type=3)
+            report_hy = Message(sender=krbr_mj, receiver=krbr_mr, text=r_txt,
+                                subject='درخواست تغییر مشخصات')
+            report_hy.save()
+            url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+            return redirect(url)

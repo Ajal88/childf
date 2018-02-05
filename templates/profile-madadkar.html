@@ -55,7 +55,7 @@
                         <li><a href="">درخواست تغییر مشخصات کاربری</a></li>
                     </ul>
                 </li>
-                <li><a href="#">سلام <b>کاربر!</b></a></li>
+                <li><a href="#">سلام <b>{{ uname }}</b></a></li>
                 <li><img src='{% static 'img/logo.jpg' %}' alt="Profile Picture" class="profile-picture-small-right">
                 </li>
             </ul>
@@ -81,54 +81,54 @@
             <tr>
                 <th>نام کاربری</th>
                 <td>gholi</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
             <tr>
                 <th>گذرواژه</th>
                 <td type="password">******</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
             <tr>
                 <th>نام</th>
                 <td>قلی</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>نام خانوادگی</th>
                 <td>زیبا</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>نام پدر</th>
                 <td>قلی بابا</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>کد ملی</th>
                 <td>۰۰۱۰۱۰۱۰۱۰</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>شماره تماس</th>
                 <td>09121000000</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
 
             <tr>
                 <th>شماره حساب بانکی</th>
                 <td>IR300100400500</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>تحصیلات</th>
                 <td>دکترا</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
@@ -140,19 +140,19 @@
             <tr>
                 <th>میزان حقوق</th>
                 <td>۳۰،۰۰۰،۰۰۰ ریال</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>تعداد مددجویان</th>
                 <td>۵</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
 
             <tr>
                 <th>تاریخ استخدام</th>
                 <td>۹۶/۳/۲</td>
-                <td><a href="" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="{% url 'change_profile' username=uname %}" title="edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             </tr>
         </table>
     </div>
