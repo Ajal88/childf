@@ -94,7 +94,6 @@ def send_message(request, receiver, sender):
             return redirect(url)
 
 
-
 def get_notif(request, username):
     pass
 
@@ -129,5 +128,3 @@ def create_message_madadjo(request, username):
 def create_message_madadkar(request, username):
     form = SendMessage()
     return render(request, 'send_message.html', {'uname': username, 'form': form})
-
-
