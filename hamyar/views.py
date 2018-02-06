@@ -5,8 +5,9 @@ from django.shortcuts import render, redirect
 # from django.http import JsonResponse
 from hamyar.forms import *
 from karbar.models import *
-from madadjoo.models import Need
 from .models import *
+from madadjoo.models import Need, MadadkarChangeRequest
+from madadjoo.forms import Report
 
 
 # @login_required
@@ -17,7 +18,8 @@ def inbox(request, username):
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
     form_send = SendReply()
-    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'inbox.html', {'msg_list': msg, 'form': form_send, 'uname': username, 'dash_url': url})
 
 
 def send_reply(request, receiver, sender, subject):
@@ -45,7 +47,8 @@ def show_dashboard(request, username):
     user = User.objects.get(username=username)
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
-    return render(request, 'hamyar.html', {'uname': username, 'msg_list': msg})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'hamyar.html', {'uname': username, 'msg_list': msg, 'dash_url': url})
 
 
 def signup(request):
@@ -94,34 +97,33 @@ def send_message(request, sender):
 
 
 def get_notif(request, username):
-    def get_notif(request, username):
-        msg = []
-        user = User.objects.get(username=username)
-        krbr = Karbar.objects.get(user=user)
-        msg = Message.objects.filter(receiver=krbr)
-        return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
+    pass
 
 
 def get_financial_report(request, username):
     pay = Support.objects.filter(hamyar__karbar__user__username=username)
-    return render(request, 'hamyar_all_report.html', {'uname': username, 'pay': pay})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'hamyar_all_report.html', {'uname': username, 'pay': pay, 'dash_url': url})
 
 
 def get_madadjo_list_all(request, username):
     c = Madadjoo.objects.all()
-    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username, 'dash_url': url})
 
 
 def get_madadjo_list(request, username):
     a = Support.objects.filter(hamyar__karbar__user__username=username).values_list(
         'payment__need__madadjoo__karbar__id').all()
     c = Madadjoo.objects.filter(karbar__id__in=a)
-    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'madadjo_list.html', {'madadjooHa': c, 'uname': username, 'dash_url': url})
 
 
 def get_madadkar_list_all(request, username):
     c = Madadkar.objects.all()
-    return render(request, 'madadkar_list.html', {'madadkarHa': c, 'uname': username})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'madadkar_list.html', {'madadkarHa': c, 'uname': username, 'dash_url': url})
 
 
 def get_madadkar_list(request, username):
@@ -130,22 +132,25 @@ def get_madadkar_list(request, username):
 
 def create_message_madadjo(request, username):
     form = SendMessage()
-    return render(request, 'send_message.html', {'uname': username, 'form': form})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'send_message.html', {'uname': username, 'form': form, 'dash_url': url})
 
 
 def create_message_madadkar(request, username):
     form = SendMessage()
-    return render(request, 'send_message.html', {'uname': username, 'form': form})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    return render(request, 'send_message.html', {'uname': username, 'form': form, 'dash_url': url})
 
 
 def profile_hamyar(request, username):
-    return render(request, 'profile-hamyar.html', {'uname': username})
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    edit_url = 'http://127.0.0.1:8000/hamyar/send_change_profile/' + str(username)
+    return render(request, 'profile-hamyar.html', {'uname': username, 'dash_url': url, 'edit_url': edit_url})
 
 
 def madadjoo(request, hamyarusername, madadjoousername):
     c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
-
     return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'hamyar': hamyarusername})
 
 
@@ -153,3 +158,27 @@ def madadkar_info(request, madadkarusername, hamyarusername):
     b = Madadkar.objects.get(karbar__user__username=madadkarusername)
     c = Madadjoo.objects.filter(madadkar_field=b)
     return render(request, 'madadkar_info.html', {'madadkar': b, 'madadjooHA': c, 'uname': hamyarusername})
+
+
+def change_profile(request, username):
+    form_change = Report()
+    url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+    edit_url = 'http://127.0.0.1:8000/hamyar/send_change_profile/' + str(username) + '/'
+    return render(request, 'change_report.html',
+                  {'uname': username, 'form': form_change, 'dash_url': url, 'send_url': edit_url})
+
+
+def send_change_profile(request, username):
+    if request.method == 'POST':
+        report_form = Report(request.POST)
+        if report_form.is_valid():
+            data = report_form.cleaned_data
+            r_txt = data['report_text']
+            mj = User.objects.get(username=username)
+            krbr_mj = Karbar.objects.get(user=mj)
+            krbr_mr = Karbar.objects.get(us_type=3)
+            report_hy = Message(sender=krbr_mj, receiver=krbr_mr, text=r_txt,
+                                subject='درخواست تغییر مشخصات')
+            report_hy.save()
+            url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
+            return redirect(url)
