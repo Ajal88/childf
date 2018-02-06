@@ -22,6 +22,7 @@ import madadjoo.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^info/(?P<madadjoousername>.+)/$', karbar.views.madadjoo, name='madadjoo'),
     url(r'^$', karbar.views.home, name='home'),
     url(r'^company_info/', karbar.views.company_inf, name='cmp_info'),
     url(r'^company_inf/activity4', karbar.views.company_act4, name='cmp_info4'),

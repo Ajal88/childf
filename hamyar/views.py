@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
+from datetime import datetime
 # from django.http import JsonResponse
 from hamyar.forms import *
 from karbar.models import *
@@ -97,7 +97,11 @@ def send_message(request, sender):
 
 
 def get_notif(request, username):
-    pass
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
 
 
 def get_financial_report(request, username):
@@ -151,7 +155,8 @@ def profile_hamyar(request, username):
 def madadjoo(request, hamyarusername, madadjoousername):
     c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
-    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'hamyar': hamyarusername})
+    form = SupportForm()
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'hamyar': hamyarusername,'form':form})
 
 
 def madadkar_info(request, madadkarusername, hamyarusername):
@@ -182,3 +187,24 @@ def send_change_profile(request, username):
             report_hy.save()
             url = 'http://127.0.0.1:8000/hamyar/dashboard/' + str(username)
             return redirect(url)
+def support(request,hamyar,madadjoo,need):
+    t = Madadjoo.objects.get(karbar__user__username=madadjoo)
+    t2 = Hamyar.objects.get(karbar__user__username=hamyar)
+    t3 = Need.objects.get(id=need)
+    a = SupportForm(request.POST)
+    amount = 40
+    if a.is_valid():
+        data = a.cleaned_data
+        amount = int(data['amount'])
+
+    t3.amountpayed = t3.amountpayed + amount
+    t3.save()
+    payment = Payment(need=t3,amount=amount,date=datetime.now())
+    payment.save()
+    hamyarsupport = Support(hamyar=t2,payment=payment)
+    hamyarsupport.save()
+
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
+    form = SupportForm()
+
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'hamyar': t2 ,'form':form})

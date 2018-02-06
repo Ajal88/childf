@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 from karbar.forms import LoginForm
 from .models import Karbar
+from madadjoo.models import Madadjoo,Need
 
 
 def mylogin(request):
@@ -49,7 +50,8 @@ def mylogin(request):
 
 
 def home(request):
-    return render(request, 'index.html')
+    c = Madadjoo.objects.all()
+    return render(request, 'index.html',{'madadjooHa': c})
 
 
 def company_inf(request):
@@ -62,5 +64,11 @@ def company_act4(request):
 
 def company_act5(request):
     return render(request, 'company-activity5.html')
+
+def madadjoo(request,  madadjoousername):
+    c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n})
+
 
 # TODO password reset - mina

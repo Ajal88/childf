@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from madadjoo.models import Madadjoo, MadadkarSupport, Need
-from .forms import MadadkarSignUpForm
+from madadjoo.models import Madadjoo, MadadkarSupport, Need,Payment
+from .forms import MadadkarSignUpForm,madadkarSupportForm
+from datetime import datetime
 from .models import Madadkar
 from karbar.models import Karbar, Message, User
 from hamyar.forms import SendMessage, SendReply
@@ -77,7 +78,9 @@ def madadjo_list_pooshesh(request, username):
 def madadjoo(request, madadkarusername, madadjoousername):
     c = Madadjoo.objects.get(karbar__user__username=madadjoousername)
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
-    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n, 'madadkar': madadkarusername})
+    b = Madadkar.objects.get(karbar__user__username=madadkarusername)
+    form = madadkarSupportForm()
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n,'madadkar': b, 'form': form})
 
 
 def get_mkfinancial_report(request, username):
@@ -178,5 +181,38 @@ def send_change_profile(request, username):
 
 
 def get_notif(request, username):
-    url = 'http://127.0.0.1:8000/madadkar/dashboared/' + str(username)
-    pass
+    msg = []
+    user = User.objects.get(username=username)
+    krbr = Karbar.objects.get(user=user)
+    msg = Message.objects.filter(receiver=krbr)
+    return render(request, 'notification.html', {'msg_list': msg, 'uname': username})
+
+def taht_madadkari(request, madadkar, madadjoo):
+    t = Madadjoo.objects.get(karbar__user__username=madadjoo)
+    t2 = Madadkar.objects.get(karbar__user__username=madadkar)
+    t.madadkar_field = t2
+    t.save()
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
+    form = madadkarSupportForm()
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form})
+
+
+def madadkar_support(request, madadkar, madadjoo, need):
+    t = Madadjoo.objects.get(karbar__user__username=madadjoo)
+    t2 = Madadkar.objects.get(karbar__user__username=madadkar)
+    t3 = Need.objects.get(id=need)
+    a = madadkarSupportForm(request.POST)
+    amount = 40
+    if a.is_valid():
+        data = a.cleaned_data
+        amount = int(data['amount'])
+
+    t3.amountpayed = t3.amountpayed + amount
+    t3.save()
+    payment = Payment(need=t3,amount=amount,date=datetime.now())
+    payment.save()
+    madadkarsupport = MadadkarSupport(madadkar=t2,payment=payment)
+    madadkarsupport.save()
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
+    form = madadkarSupportForm()
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form})
