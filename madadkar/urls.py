@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from . import views
+from madadjoo.views import need_pays
 
 urlpatterns = [
     url(r'notification/(?P<username>.+)/$', views.get_notif, name='get_notif'),
@@ -21,4 +22,5 @@ urlpatterns = [
     url(r'profile/(?P<username>.+)/$', views.profile_madadkar, name='profile_madadkar'),
     url(r'change_profile/(?P<username>.+)/$', views.change_profile, name='change_profile'),
     url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
+    url(r'need_pays/(?P<username>.+)/$', need_pays, name='need_pay')
 ]

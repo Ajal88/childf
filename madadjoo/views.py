@@ -6,10 +6,9 @@ from hamyar.forms import SendReply, SendMessage
 from hamyar.models import Hamyar
 from karbar.models import Karbar, Message
 from madadkar.models import Madadkar
-from .filters import MadadjooFilter
-from .filters import NeedFilter
+from .filters import MadadjooFilter, NeedFilter, PaymentFilter
 from .forms import *
-from .models import Madadjoo, Need, MadadkarChangeRequest
+from .models import Madadjoo, Need, MadadkarChangeRequest, Payment
 
 
 @login_required
@@ -51,6 +50,11 @@ def search(request):
     madadjoo_filter = MadadjooFilter(request.GET, queryset=madadjoo_list)
     return render(request, 'madadjoo_search.html', {'filter': madadjoo_filter})
 
+
+def need_pays(request, username):
+    pay_list = Payment.objects.all()
+    pay_filter = PaymentFilter(request.GET, queryset=pay_list)
+    return render(request, 'view_need_pays.html', {'filter': pay_filter, 'uname': username})
 
 def madsignup(request):
     if request.method == 'POST':

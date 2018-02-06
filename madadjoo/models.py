@@ -13,20 +13,20 @@ class Madadjoo(models.Model):
 
     NationalCode = models.CharField(max_length=11, unique=True)
     madadkar_field = models.ForeignKey(Madadkar, on_delete=models.DO_NOTHING, null=True, blank=True)
-    city = models.CharField(max_length=20, blank=True)
+    city = models.CharField('شهر', max_length=20, blank=True)
     bankAccount = models.CharField(max_length=20, blank=True)
-    grade = models.IntegerField(choices=typeOfGrade, null=True, blank=True)
+    grade = models.IntegerField('وضعیت تحصیل', choices=typeOfGrade, null=True, blank=True)
     address = models.CharField(max_length=100, blank=True)
-    state = models.IntegerField(choices=stateType)
-    healthStatus = models.IntegerField(choices=healthStatusType, default=0)
+    state = models.IntegerField('وضعیت کلی', choices=stateType)
+    healthStatus = models.IntegerField('وضعیت سلامت روحی و جسمی', choices=healthStatusType, default=0)
     disease = models.CharField(max_length=30, blank=True)
     educationalStatus = models.CharField(max_length=30, blank=True)
     briefDescription = models.TextField(blank=True)
     birthDate = models.DateField(null=True, blank=True)
     savingAmount = models.PositiveIntegerField(default=0)
     averageGradeOfLastGrade = models.PositiveIntegerField(null=True, blank=True)
-    sex = models.IntegerField(choices=sexType)
-    fatherName = models.CharField(max_length=20)
+    sex = models.IntegerField('جنسیت', choices=sexType)
+    fatherName = models.CharField('نام پدر', max_length=20)
     phoneNumber = models.CharField(max_length=12, null=True, blank=True)
 
     class Meta:
@@ -35,6 +35,22 @@ class Madadjoo(models.Model):
 
     def __str__(self):
         return self.karbar.user.username
+
+    def madadkar_firstname(self):
+        return self.karbar.user.first_name
+
+    def madadkar_lastname(self):
+        return self.karbar.user.last_name
+
+    def give_madadkar(self):
+        x = self.madadkar_field
+        if x is None:
+            return '-'
+        return x.karbar.user.username
+
+    madadkar_firstname.short_description = 'نام'
+    madadkar_lastname.short_description = 'نام خانوادگی'
+    give_madadkar.short_description = 'مددکار'
 
 
 class Need(models.Model):
@@ -76,6 +92,7 @@ class Payment(models.Model):
         return self.need.name
 
     give_need_name.short_description = 'نام نیاز'
+
 
 class MadadkarChangeRequest(Request):
     madadjoo = models.ForeignKey(Madadjoo, on_delete=models.CASCADE)
@@ -132,6 +149,7 @@ class MadadkarSupport(models.Model):
     class Meta:
         verbose_name = 'حمایت‌ مددکار'
         verbose_name_plural = 'حمایت‌های مددکار'
+
 
 # move this two classes from modir to madadjoo
 

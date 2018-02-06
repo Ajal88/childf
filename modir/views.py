@@ -12,7 +12,7 @@ def show_dashboard(request, username):
     krbr = Karbar.objects.get(user=user)
     msg = Message.objects.filter(receiver=krbr)
     url = 'http://127.0.0.1:8000/modir/dashboard/' + str(username)
-    return render(request, 'hamyar.html', {'uname': username, 'msg_list': msg, 'dash_url': url})
+    return render(request, 'modir.html', {'uname': username, 'msg_list': msg, 'dash_url': url})
 
 
 def show_message_to_all(request, username):
