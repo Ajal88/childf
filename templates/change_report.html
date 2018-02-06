@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load addattr %}
-{% load widget_tweaks %}
-
-<html lang="fa">
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +13,7 @@
     <link rel="stylesheet" href='{% static 'css/custom.css' %}'/>
     <link rel="stylesheet" href='{% static 'css/normalize.css' %}'/>
     <link rel="icon" href='{% static 'img/logo.png' %}'>
-    <title>صندوق پیام‌ها</title>
+    <title>درخواست تغییر مشخصات</title>
 </head>
 <body>
 
@@ -50,11 +47,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">تنظیمات<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="profile-madadkar.html">پروفایل</a></li>
-                        <li><a href="profile-madadkar.html">تغییر رمز عبور</a></li>
-                        <li><a href="notification.html">اعلان‌ها</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="profile-madadkar.html">درخواست تغییر مشخصات کاربری</a></li>
+                        <li><a href="{% url 'get_notif' username=uname %}">اعلان‌ها</a></li>
                     </ul>
                 </li>
                 <li><a href="#">سلام <b>{{ uname }}</b></a></li>
@@ -65,28 +58,33 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-{% for msg in msg_list %}
-    <div class="col-md-offset-3 col-xs-offset-1 col-xs-10 col-md-8 jumbotron big-notif-top-offset">
-        <h4><b>از :</b></h4>
-        <h4><b>{{ msg.sender }}</b></h4>
-        <h4>موضوع :</h4>
-        <h4>{{ msg.subject }}</h4>
-        <p>متن پیام :</p>
-        <p>{{ msg.text }}</p>
-        <small>{{ msg.date }}</small>
-        <h4><b>پاسخ پیام</b></h4>
-        <form action="{% url 'send_reply' receiver=msg.sender sender=msg.receiver subject=msg.subject %}" method="POST"
-              role="form">
-            {{ form.text }}
-            <br>
-            <p><input type="submit" class="btn btn-info" role="button" value="ارسال پاسخ"></p>
-        </form>
+<!-- report panel -->
+<div class="col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-1 col-xs-9 col-xs-offset-1 sign-panel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-lock"></span> درخواست تغییر مشخصات
+        </div>
+        <div class="panel-body">
+            <form method="post" action="{{ send_url }}" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="date-s" class="col-sm-3 control-label">
+                        علت</label>
+                    <div class="col-sm-9">
+                        {{ form.report_text }}
+                    </div>
+                </div>
+                <div class="form-group last">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <input type="submit" class="btn btn-success btn-sm" value="ارسال درخواست به مدیر">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-{% empty %}
-    <li>متاسفانه هیچ پیامی موجود نیست</li>
-{% endfor %}
+</div>
 
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src='{% static 'js/bootstrap.js' %}'></script>
 <script src='{% static 'js/butn.js' %}'></script>

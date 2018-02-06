@@ -78,7 +78,7 @@
             اعلان‌ها
             <span class="badge">۷</span></a></li>
         <li><!-- Link with dropdown items -->
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expand-ed="false" class="text-sidebar"><span
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="text-sidebar"><span
                     class="glyphicon glyphicon-user" aria-hidden="true"></span> مشاهده‌ی مددجویان <span
                     class="caret"></span></a>
             <ul class="collapse list-unstyled nav" id="homeSubmenu">
@@ -111,6 +111,10 @@
                 class="glyphicon glyphicon-save-file"
                 aria-hidden="true"></span>
             دریافت گزارش مالی</a></li>
+        <li><a class="text-sidebar" href="{% url 'need_pay' username=uname %}"><span
+                class="glyphicon glyphicon-save-file"
+                aria-hidden="true"></span>
+            دریافت گزارش مالی به مددجو</a></li>
     </ul>
 </div>
 

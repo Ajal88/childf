@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="http://127.0.0.1:8000/">خانه</a></li>
-                <li class="active"><a href="madadjo_dash.html">داشبورد</a></li>
+                <li class="active"><a href="{{ dash_url }}">داشبورد</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -117,20 +117,17 @@
             <span class="glyphicon glyphicon-lock"></span> درخواست تغییر مددکار
         </div>
         <div class="panel-body">
-            <form method="post" action="{% url '' %}" class="form-horizontal" role="form">
+            <form method="post" action="{% url 'send_report_madadkar' username=uname %}" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="date-s" class="col-sm-3 control-label">
                         علت</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="date-s" placeholder="شرح دلایل نارضایتی از مددکار"
-                               required>
+                        {{ form.report_text }}
                     </div>
                 </div>
                 <div class="form-group last">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-success btn-sm">
-                            ارسال درخواست به مدیر
-                        </button>
+                        <input type="submit" class="btn btn-success btn-sm" value="ارسال درخواست به مدیر">
                     </div>
                 </div>
             </form>

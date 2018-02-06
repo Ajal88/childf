@@ -14,14 +14,15 @@ from modir.models import Modir
 class Madadkar(models.Model):
     karbar = models.OneToOneField(Karbar, on_delete=models.CASCADE)
 
-    NationalCode = models.CharField(max_length=11)
+    NationalCode = models.CharField('کد ملی', max_length=11)
     birthDate = models.DateField(null=True, blank=True)
-    city = models.CharField(max_length=20, blank=True)
-    education = models.CharField(max_length=20, blank=True)
+    city = models.CharField('شهر', max_length=20, blank=True)
+    education = models.CharField('تحصیلات', max_length=20, blank=True)
     address = models.CharField(max_length=100, blank=True)
     salary = models.PositiveIntegerField(null=True, blank=True)
-    dateOfEmployeement = models.DateField(null=True, blank=True)
-    phoneNumber = models.CharField(max_length=12, null=True, blank=True)
+    dateOfEmployeement = models.DateField('تاریخ استخدام', null=True, blank=True)
+    phoneNumber = models.CharField('شماره تماس', max_length=12, null=True, blank=True)
+    rate = models.PositiveIntegerField('امتیاز')
 
     class Meta:
         verbose_name = 'مددکار'
@@ -30,8 +31,14 @@ class Madadkar(models.Model):
     def __str__(self):
         return self.karbar.user.username
 
-    def madadkar_username(self):
-        return self.karbar.user.username
+    def madadkar_firstname(self):
+        return self.karbar.user.first_name
+
+    def madadkar_lastname(self):
+        return self.karbar.user.last_name
+
+    madadkar_firstname.short_description = 'نام'
+    madadkar_lastname.short_description = 'نام خانوادگی'
 
     def save(self, *args, **kwargs):
         if not self.id:

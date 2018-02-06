@@ -34,3 +34,6 @@ class SendMessage(forms.Form):
     subject = forms.CharField()
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'text', 'rows': '3'}))
     receiver = forms.CharField()
+
+class SupportForm(forms.Form):
+    amount = forms.IntegerField()

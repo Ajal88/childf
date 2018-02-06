@@ -62,3 +62,6 @@ class MadadkarSignUpForm(UserCreationForm):
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
         }
+
+class madadkarSupportForm(forms.Form):
+    amount = forms.IntegerField()

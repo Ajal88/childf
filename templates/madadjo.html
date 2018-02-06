@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="http://127.0.0.1:8000/">خانه</a></li>
-                <li class="active"><a href="madadkar.html">داشبورد</a></li>
+                <li class="active"><a href="{{ dash_url }}">داشبورد</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -148,14 +148,37 @@
             </div>
             {% endfor %}
         </div>
+
+        {% if madadkar %}
          {% for need in needs %}
         <div class="col-md-4 col-sm-2 col-xs-2 pay-need">
-            <a class="btn btn-success" href="#" role="button">پرداخت نیاز مددجو</a>
+                <form action="{% url 'madadkar_support' madadkar=madadkar madadjoo=madadjoo need=need.id%}" method="POST"
+              role="form">
+                            مقدار کمک
+{{form.amount}}
+            <p><input type="submit" class="btn btn-success" role="button" value="پرداخت نیاز مددجو"></p>
+        </form>
         </div>
+
         {% endfor %}
+        {% endif %}
+
+
+        {% if hamyar %}
+         {% for need in needs %}
+        <div class="col-md-4 col-sm-2 col-xs-2 pay-need">
+                <form action="{% url 'support' hamyar=hamyar madadjoo=madadjoo need=need.id%}" method="POST"
+              role="form">
+                            مقدار کمک
+{{form.amount}}
+            <p><input type="submit" class="btn btn-success" role="button" value="پرداخت نیاز مددجو"></p>
+        </form>
+        </div>
+
+        {% endfor %}
+        {% endif %}
+
     </div>
-
-
 
 
 
@@ -169,10 +192,20 @@
     <br>
     <br>
     <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
-        <a class="btn btn-success" href="#" role="button">قراردادن تحت مددکاری</a>
-        <a class="btn btn-info" href="#" role="button">مشاهده‌ی نیازها</a>
-        <a class="btn btn-danger" href="#" role="button">تغییر نیاز</a>
-        <a class="btn btn-warning" href="#" role="button">اضافه کردن نیاز</a>
+
+        {% if madadkar %}
+
+        <form action="{% url 'taht_madadkari' madadkar=madadkar madadjoo=madadjoo %}" method="POST"
+              role="form">
+            <br>
+            <p><input type="submit" class="btn btn-success" role="button" value="قراردادن تحت مددکاری"></p>
+        </form>
+
+
+        {% endif %}
+<!--         <a class="btn btn-success" href="#" role="button">قراردادن تحت مددکاری</a>
+ <a class="btn btn-danger" href="#" role="button">تغییر نیاز</a>
+        <a class="btn btn-warning" href="#" role="button">اضافه کردن نیاز</a> -->
 
         <a class="btn btn-primary" href="send_message.html" role="button">ارسال پیام</a>
     </div>

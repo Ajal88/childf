@@ -3,7 +3,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-
+    url(r'support/(?P<hamyar>.+)/info/(?P<madadjoo>.+)/(?P<need>.+)/$', views.support,
+        name='support'),
     url(r'get_madadjo_list_all/(?P<hamyarusername>.+)/info/(?P<madadjoousername>.+)/$', views.madadjoo,
         name='madadjo'),
     url(r'get_madadkar_list_all/(?P<hamyarusername>.+)/info/(?P<madadkarusername>.+)/$', views.madadkar_info,
@@ -22,4 +23,6 @@ urlpatterns = [
     url(r'get_madadkar_list/(?P<username>.+)/$', views.get_madadkar_list, name='get_madadkar_list'),
     url(r'get_financial_report/(?P<username>.+)/$', views.get_financial_report, name='get_financial_report'),
     url(r'profile_hamyar/(?P<username>.+)/$', views.profile_hamyar, name='profile_hamyar'),
+    url(r'change_profile/(?P<username>.+)/$', views.change_profile, name='change_profile'),
+    url(r'send_change_profile/(?P<username>.+)/$', views.send_change_profile, name='send_change_profile'),
 ]
