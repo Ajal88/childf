@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from madadjoo.models import Madadjoo, MadadkarSupport, Need,Payment
-from .forms import MadadkarSignUpForm,madadkarSupportForm
+from madadjoo.models import Madadjoo, MadadkarSupport, Need,Payment,MadadkarRateTheMadadjoo
+from .forms import MadadkarSignUpForm,madadkarSupportForm,madadkarRateToMadadjooForm
 from datetime import datetime
 from .models import Madadkar
 from karbar.models import Karbar, Message, User
@@ -80,7 +80,8 @@ def madadjoo(request, madadkarusername, madadjoousername):
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoousername)
     b = Madadkar.objects.get(karbar__user__username=madadkarusername)
     form = madadkarSupportForm()
-    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n,'madadkar': b, 'form': form})
+    form2 = madadkarRateToMadadjooForm()
+    return render(request, 'madadjo.html', {'madadjoo': c, 'needs': n,'madadkar': b, 'form': form ,'form2': form2 })
 
 
 def get_mkfinancial_report(request, username):
@@ -194,7 +195,8 @@ def taht_madadkari(request, madadkar, madadjoo):
     t.save()
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
     form = madadkarSupportForm()
-    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form})
+    form2 = madadkarRateToMadadjooForm()
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form,'form2': form2})
 
 
 def madadkar_support(request, madadkar, madadjoo, need):
@@ -215,4 +217,26 @@ def madadkar_support(request, madadkar, madadjoo, need):
     madadkarsupport.save()
     n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
     form = madadkarSupportForm()
-    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form})
+    form2 = madadkarRateToMadadjooForm()
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form,'form2': form2})
+
+def rate(request, madadkar, madadjoo):
+    t = Madadjoo.objects.get(karbar__user__username=madadjoo)
+    t2 = Madadkar.objects.get(karbar__user__username=madadkar)
+
+    a = madadkarRateToMadadjooForm(request.POST)
+
+    score = 3
+    reason = 'درس خوان بودن'
+    if a.is_valid():
+        data = a.cleaned_data
+        score = int(data['score'])
+        reason = data['reason']
+
+    rate = MadadkarRateTheMadadjoo(madadkar=t2,madadjoo=t,date=datetime.now(),reason=reason,score=score)
+    rate.save()
+
+    n = Need.objects.filter(madadjoo__karbar__user__username=madadjoo)
+    form = madadkarSupportForm()
+    form2 = madadkarRateToMadadjooForm()
+    return render(request, 'madadjo.html', {'madadjoo': t, 'needs': n, 'madadkar': t2, 'form': form ,'form2': form2})

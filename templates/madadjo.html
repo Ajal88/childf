@@ -82,7 +82,7 @@
         <img src='{% static 'img/logo.jpg' %}' class="img-responsive img-profile" alt="Responsive image">
     </div>
     <div class=" col-md-8 col-sm-6 col-xs-6">
-        <h1><b>{{madadjoo.karbar.user.first_name}}{{madadjoo.karbar.user.last_name}}</b></h1>
+        <h1><b>{{madadjoo.karbar.user.first_name}}{{madadjoo.karbar.user.las_name}}</b></h1>
        <!-- <h4>دانش اموز کوشا و با استعداد</h4>-->
         <p>{{madadjoo.get_state_display}}</p>
     </div>
@@ -177,6 +177,21 @@
 
         {% endfor %}
         {% endif %}
+
+                {% if madadkar %}
+        <div class="col-md-4 col-sm-2 col-xs-2 pay-need">
+                <form action="{% url 'rate' madadjoo=madadjoo madadkar=madadkar%}" method="POST"
+              role="form">
+                          دلیل امتیاز دهی
+                {{form2.reason}}
+                    <br><br>
+                    امتیاز
+                    {{form2.score}}
+                      <br><br>
+            <p><input type="submit" class="btn btn-success" role="button" value="امتیاز دهی به مددجو"></p>
+        </form>
+        </div>
+{% endif %}
 
     </div>
 

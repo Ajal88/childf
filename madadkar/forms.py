@@ -65,3 +65,7 @@ class MadadkarSignUpForm(UserCreationForm):
 
 class madadkarSupportForm(forms.Form):
     amount = forms.IntegerField()
+
+class madadkarRateToMadadjooForm(forms.Form):
+    reason = forms.CharField(max_length=50)
+    score = forms.IntegerField()

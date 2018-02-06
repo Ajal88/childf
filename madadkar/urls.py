@@ -4,6 +4,7 @@ from . import views
 from madadjoo.views import need_pays
 
 urlpatterns = [
+    url(r'rate/(?P<madadkar>.+)/(?P<madadjoo>.+)/$', views.rate, name='rate'),
     url(r'madadkar_support/(?P<madadkar>.+)/(?P<madadjoo>.+)/(?P<need>.+)/$', views.madadkar_support, name='madadkar_support'),
     url(r'taht_madadkari/(?P<madadkar>.+)/(?P<madadjoo>.+)/$', views.taht_madadkari, name='taht_madadkari'),
     url(r'notification/(?P<username>.+)/$', views.get_notif, name='get_notif'),
